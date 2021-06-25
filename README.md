@@ -3,9 +3,12 @@
 
 ## React Client Application Routes
 
-- Route `/`: page content and purpose
-- Route `/something/:param`: page content and purpose, param specification
-- ...
+- Route `/`: show the listof questionnaires available to compile
+- Route `/login`: show the login form for authentication
+- Route `/manage`: show user's questionnaires and permits to delete them or see results of them
+- Route `/create`: permits to create a questionnaire
+- Route `/compile/:id`: show question list of a questionnaire and permits to submit a compile. <id> is the questionnaire's id 
+- Route `/result/:id`: show a results for a specific questionnaire. <id> is the questionnaire's id
 
 ## API Server
 
@@ -22,9 +25,10 @@
 
 ## Database Tables
 
-- Table `users` - contains xx yy zz
-- Table `something` - contains ww qq ss
-- ...
+- Table `users` - contains id username hash name
+- Table `questionnaires` - contains id title id_user num_submit
+- Table `questions` - contains id id_questionnaire open question answer_1 answer_2 answer_3 answer_4 answer_5 answer_6 answer_7 answer_8 answer_9 answer_10 min max
+- Table `answers` - contains id_compile id_questionnaire id_question answer option name open selection
 
 ## Main React Components
 
@@ -40,5 +44,5 @@
 
 ## Users Credentials
 
-- username, password (plus any other requested info)
-- username, password (plus any other requested info)
+- admin1@test.it, password (plus any other requested info)
+- admin2@test.it, password (plus any other requested info)

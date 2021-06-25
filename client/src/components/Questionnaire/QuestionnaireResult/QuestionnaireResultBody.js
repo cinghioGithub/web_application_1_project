@@ -6,29 +6,29 @@ import Spinner from "../../Various/Spinner";
 import { useEffect } from "react";
 
 export const QuestionnaireResultBody = ({ ...props }) => {
-  const { loading, setPointer, questionnaire, pages, current, compile, error } = props;
+  const { loading, setCursor, questionnaire, pages, current, compile, error } = props;
 
   const next = () => {
     //setLoading(true);
     if (current === pages) {
-      setPointer(1);
+      setCursor(1);
     } else {
-      setPointer((current) => (current = current + 1));
+      setCursor((current) => (current = current + 1));
     }
   };
 
   const previous = () => {
     //setLoading(true);
     if (current === 1) {
-      setPointer(pages);
+      setCursor(pages);
     } else {
-      setPointer((current) => (current = current - 1));
+      setCursor((current) => (current = current - 1));
     }
   };
 
   const select = (value) => {
     //setLoading(true);
-    setPointer(value);
+    setCursor(value);
   };
 
 

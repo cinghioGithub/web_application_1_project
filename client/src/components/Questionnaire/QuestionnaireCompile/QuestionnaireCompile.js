@@ -15,7 +15,7 @@ export const QuestionnaireCompile = ({ ...props }) => {
   const [questionnaire, setQuestionnaire] = useState();
   const [question, setQuestion] = useState();
   const [answers, setAnswers] = useState([]);
-  const [pointer, setPointer] = useState(1);
+  const [cursor, setCursor] = useState(1);
   const [forward, setForward] = useState(false);
 
   const id = useRouteMatch().params.id;
@@ -31,12 +31,12 @@ export const QuestionnaireCompile = ({ ...props }) => {
   useEffect(() => {
     if (questionnaire) {
       const tmpQuestion = questionnaire.questions.find(
-        (question) => question.id === pointer
+        (question) => question.id === cursor
       );
       setQuestion(tmpQuestion);
       setLoadQuestion(false);
     }
-  }, [pointer, loadQuestion, questionnaire]);
+  }, [cursor, loadQuestion, questionnaire]);
 
   useEffect(() => {
     //download questionnaire
@@ -116,8 +116,8 @@ export const QuestionnaireCompile = ({ ...props }) => {
           setUsername={setUsername}
           loading={loadQuestion}
           setLoading={setLoadQuestion}
-          current={pointer}
-          setPointer={setPointer}
+          current={cursor}
+          setCursor={setCursor}
           pages={questionnaire.questions.length}
           questions={questionnaire.questions}
           question={question}

@@ -12,7 +12,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     setUsername,
     loading,
     setLoading,
-    setPointer,
+    setCursor,
     title,
     pages,
     current,
@@ -64,7 +64,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     if (result) {
       setError();
       setInvalidAnswer(false);
-      setPointer((pointer) => (pointer = pointer + 1));
+      setCursor((cursor) => (cursor = cursor + 1));
     }
   };
 
@@ -73,7 +73,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     if (result) {
       setError();
       setInvalidAnswer(false);
-      setPointer((pointer) => (pointer = pointer - 1));
+      setCursor((cursor) => (cursor = cursor - 1));
     }
   };
 
@@ -81,7 +81,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     const result = handleCompleteAnswer();
     if (result) {
       setError();
-      setPointer(value);
+      setCursor(value);
     }
   };
 
@@ -211,7 +211,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     <>
       <QuestionnaireCompileHeader
         title={title}
-        pointer={current}
+        cursor={current}
         max={pages}
         submit={finish}
       />

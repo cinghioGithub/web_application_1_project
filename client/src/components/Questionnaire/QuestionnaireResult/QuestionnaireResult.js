@@ -9,7 +9,7 @@ export const QuestionnaireResult = ({ ...props }) => {
   const [loadQuestionnaire, setLoadQuestionnaire] = useState(true);
   const [compiles, setCompiles] = useState([]);
   const [questionnaire, setQuestionnaire] = useState();
-  const [pointer, setPointer] = useState(1);
+  const [cursor, setCursor] = useState(1);
   const [error, setError] = useState();
 
   const id = useRouteMatch().params.id;
@@ -58,12 +58,12 @@ export const QuestionnaireResult = ({ ...props }) => {
   ) : error ? (<QuestionnaireCompileResult title={"Error!"} error={error} loading={loadQuestionnaire} />) : (
     <QuestionnaireResultBody
       questionnaire={questionnaire}
-      compile={compiles[pointer - 1]}
+      compile={compiles[cursor - 1]}
       loading={loadQuestionnaire}
       setLoading={setLoadQuestionnaire}
-      setPointer={setPointer}
+      setCursor={setCursor}
       pages={compiles.length}
-      current={pointer}
+      current={cursor}
       error={error}
     />
   );

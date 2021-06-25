@@ -4,7 +4,6 @@ import Main from "./components/content/Main";
 import Spinner from "./components/Various/Spinner";
 import Footer from "./components/content/Footer";
 import { useEffect, useState } from "react";
-//import { user } from "./Data";
 import API from "./API.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./vendor/fontawesome-free/css/all.min.css";

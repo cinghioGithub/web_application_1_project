@@ -54,8 +54,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
       try{
         const response = await API.insertQuestionnaire(questionnaire);
         setRefreshAdmin(true);
-        setRefresh(true);
-        console.log(response);
+        //setRefresh(true);
       }
       catch(err){
         setError(err.error);
@@ -65,7 +64,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
     if (created) {
       setLoading(true);
       submitQuestionnaire();
-      setLoading(false)
+      setLoading(false);
     }
   }, [created]);
 

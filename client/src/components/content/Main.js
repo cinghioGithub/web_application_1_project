@@ -29,11 +29,12 @@ export const Main = ({ ...props }) => {
         setLoadingQuestionnaire(false);
       }
     }
+    console.log(refresh);
     if (refresh) {
       getQuestionnaires();
       setRefresh(false);
     }
-  }, [refresh]);
+  }/*, [refresh]*/);
 
   useEffect(() => {
     async function getMyQuestionnaires() {
@@ -45,14 +46,15 @@ export const Main = ({ ...props }) => {
         // da gestire
       }
     }
-    console.log(refreshAdmin);
-    console.log(user);
+    //console.log(refreshAdmin);
+    //console.log(user);
     if (refreshAdmin && isLogged) {
       getMyQuestionnaires();
       setLoadingMyQuestionnaire(false);
       setRefreshAdmin(false);
+      setRefresh(true);
     }
-  }, [refreshAdmin, isLogged]);
+  }/*,[refreshAdmin, isLogged]*/);
 
   useEffect(() => {
     setRefreshAdmin(true);

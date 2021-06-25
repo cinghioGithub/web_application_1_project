@@ -57,6 +57,7 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
       moveDown={moveDown}
       numQuestions={questions.length}
       remove={removeQuestion}
+      key={question.id}
     />
   ));
 

@@ -27,7 +27,7 @@ export const QuestionnaireCreateHeader = ({ ...props }) => {
                 />
               </div>
             </div>
-            {numQuestions>0 && <div className="card-body d-flex justify-content-start">
+            {/*numQuestions>0 &&*/ <div className="card-body d-flex justify-content-start">
                 <Button
                   text={"Add New Question"}
                   type={"primary"}

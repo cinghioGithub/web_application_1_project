@@ -88,12 +88,13 @@ exports.getQuestionnaires = () => {
           for (let questionnaire of questionnaireList) {
             try {
               const questions = await getQuestionnaireQuestions(questionnaire.id);
-              questionnaire.questions = [...questions];
+              questionnaire.questions = questions.error ? [] : [...questions];
+              //questionnaire.questions = [...questions];
             } catch (err) {
               reject(err);
             }
           }
-          resolve(questionnaireList);
+          resolve(questionnaireList.filter(val => val.questions.length != 0));
         }
       }
     });
@@ -158,7 +159,8 @@ exports.getQuestionnairesByUser = (user) => {
           for (let questionnaire of questionnaireList) {
             try {
               const questions = await getQuestionnaireQuestions(questionnaire.id);
-              questionnaire.questions = [...questions];
+              questionnaire.questions = questions.error ? [] : [...questions];
+              //questionnaire.questions = [...questions];
             } catch (err) {
               reject(err);
             }
@@ -288,7 +290,7 @@ exports.createQuestionnaire = (questionnaire) => {
             reject(err);
           }
         }
-        resolve({ id_questionnaire: questionnaire.id });
+        resolve({ id_questionnaire: id_questionnaire });
       }
     });
   });

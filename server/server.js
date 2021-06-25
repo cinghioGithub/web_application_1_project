@@ -134,6 +134,7 @@ app.get('/api/questionnaires', async (req, res) => {
       }
     }
     catch (err) {
+      console.log(err);
       return res.status(500).json({ error: "500 - Internal Server Error" });
     }
   }

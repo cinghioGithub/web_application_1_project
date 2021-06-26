@@ -14,7 +14,7 @@ const getQuestionnaireQuestions = (id_questionnaire) => {
         reject(err);
       } else {
         if (rows.length === 0) {
-          resolve({ error: "Database Error - Get Questionnaires's questions" });
+          resolve({ error: "Database Error - Get Questionnaires's questions (no questions)" });
         } else {
           const questionsList = rows.map((row) => {
             let closeQuestion;
@@ -74,7 +74,7 @@ exports.getQuestionnaires = () => {
         reject(err); //TODO
       } else {
         if (rows.length === 0) {
-          resolve({ error: "Database Error - Get Questionnaires" });
+          resolve({ error: "Database Error - Get Questionnaires (no questionaires)" });
         } else {
           const questionnaireList = rows.map((row) => {
             return {
@@ -110,7 +110,7 @@ exports.getQuestionnaireById = (id) => {
         reject(err); //TODO
       } else {
         if (rows.length === 0) {
-          resolve({ error: "Database Error - Get questionnaire by id" });
+          resolve({ error: "Database Error - Get questionnaire by id (no questionnaire for specified id)" });
         } else {
           const questionnaireList = rows.map((row) => {
             return {
@@ -145,7 +145,7 @@ exports.getQuestionnairesByUser = (user) => {
         reject(err); //TODO
       } else {
         if (rows.length === 0) {
-          resolve({ error: "Database Error - Get questionnaires" });
+          resolve({ error: "Database Error - Get questionnaires (no questionnaire for specified user)" });
         } else {
           const questionnaireList = rows.map((row) => {
             return {
@@ -181,7 +181,7 @@ exports.getQuestionnaireAnswers = (id_questionnaire) => {
         reject(err);
       } else {
         if (rows.length === 0) {
-          resolve({ error: "Database Error - Get Questionnaire's Answers" });
+          resolve({ error: "Database Error - Get Questionnaire's Answers (no answers for specified questionnaire)" });
         } else {
           const idCompileList = rows.map((row) => {
             return row.id_compile;
@@ -356,7 +356,6 @@ exports.createCompile = (id_questionnaire, compile) => {
     let maxId = -1;
     try{
       maxId = await getMaxId();
-      const id = await updateCompileNumber(id_questionnaire);
     }
     catch(err){
       reject(err);
@@ -372,6 +371,12 @@ exports.createCompile = (id_questionnaire, compile) => {
       } catch (err) {
         reject(err);
       }
+    }
+    try{
+      const id = await updateCompileNumber(id_questionnaire);
+    }
+    catch(err){
+      reject(err);
     }
     resolve({ id_questionnaire: id_questionnaire });
   });
@@ -430,10 +435,10 @@ exports.getUserIdQuestionnaire = (id_questionnaire) => {
     const sql = "SELECT id_user FROM questionnaires WHERE id=?";
     db.all(sql, [id_questionnaire], (err, rows) => {
       if (err) {
-        reject(err); //TODO
+        reject(err);
       } else {
         if (rows.length === 0) {
-          resolve({ error: "Database Error - Get questionnaires" });
+          resolve({ error: "Database Error - Get userId of questionnaire" });
         } else {
           const id_user = rows[0].id_user;
           resolve({ id_user: id_user });
@@ -442,72 +447,3 @@ exports.getUserIdQuestionnaire = (id_questionnaire) => {
     });
   });
 };
-
-const main = async () => {
-  // const res = await this.getQuestionnaires();
-  // console.log(res);
-  // console.log(res[0].questions);
-  // console.log(res[1].questions);
-  // const res = await this.getQuestionnaireAnswers(1);
-  // console.log(res.compiles[0].answers);
-  // const questionnaire = {
-  //   id: 3,
-  //   admin: 1,
-  //   title: "Your Favourite foods and Drinks",
-  //   compiled: 2,
-  //   questions: [
-  //     { id: 1, title: "Question 1", open: true, required: true },
-  //     {
-  //       id: 2,
-  //       title: "Question 2",
-  //       open: false,
-  //       min: 1,
-  //       max: 1,
-  //       options: [
-  //         { id: 1, value: "si" },
-  //         { id: 2, value: "no" },
-  //         { id: 3, value: "forse" },
-  //       ],
-  //     },
-  //     { id: 3, title: "Question 3", open: true, required: true },
-  //     {
-  //       id: 4,
-  //       title: "Question 4",
-  //       open: false,
-  //       min: 1,
-  //       max: 4,
-  //       options: [
-  //         { id: 1, value: "si" },
-  //         { id: 2, value: "no" },
-  //         { id: 3, value: "forse" },
-  //         { id: 4, value: "più si che no" },
-  //         { id: 5, value: "più no che si" },
-  //         { id: 6, value: "più no che si 2" },
-  //       ],
-  //     },
-  //     { id: 5, title: "Question 5", open: true, required: true },
-  //   ],
-  // };
-  // const res = await this.createQuestionnaire(questionnaire);
-  // console.log(res);
-  // const res = await this.getQuestionnaireById(1);
-  // console.log(res);
-  // const compile = {
-  //   username: "Enrico",
-  //   answers: [
-  //     { id: 1, answer: "Answer 111" },
-  //     { id: 2, selection: 3 },
-  //     { id: 3, answer: "Answer 3333" },
-  //     { id: 4, options: [false, false, true, true, false] },
-  //     { id: 5, answer: "Answer 544" },
-  //   ],
-  // };
-  // const res = await this.createCompile(3, compile);
-  // console.log(res);
-  // const res = await this.deleteQuestionnaire(3);
-  // console.log(res);
-  // const res = await this.getUserIdQuestionnaire(3);
-  // console.log(res);
-};
-
-main();

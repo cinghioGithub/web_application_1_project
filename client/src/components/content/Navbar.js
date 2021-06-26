@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPollH } from "@fortawesome/free-solid-svg-icons";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { faPollH } from "@fortawesome/free-solid-svg-icons";
 import { Navbar as NavbarBootstrap, NavDropdown } from "react-bootstrap";
 import Button from "../Various/Button";
 import img from "../../img/undraw_profile_2.svg";
@@ -30,7 +30,7 @@ export const Navbar = ({ ...props }) => {
           <div className="topbar-divider d-none d-sm-block"></div>
           {!user ? (
             <li className="nav-item dropdown no-arrow h-100">
-              <Button type={"warning"} text={"Login"} url={"/login"} />
+              <Button type={"success"} text={"Login"} url={"/login"} />
             </li>
           ) : (
             <NavDropdown

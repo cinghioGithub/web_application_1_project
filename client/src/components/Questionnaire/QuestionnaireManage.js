@@ -18,10 +18,10 @@ export const QuestionnaireManage = ({ ...props }) => {
     }
     setLoadDelete();
     setRefreshAdmin(true);
-    setRefresh(true);
+    //setRefresh(true);
   };
 
-  const cards = myQuestionnaires
+  const cards = myQuestionnaires.error ? {error: myQuestionnaires.error} : myQuestionnaires
     .filter((questionnaire) => user.id === questionnaire.admin)
     .map((questionnaire, index) => (
       <QuestionnaireCard
@@ -33,6 +33,8 @@ export const QuestionnaireManage = ({ ...props }) => {
         isAdmin={user.id === questionnaire.admin}
       />
     ));
+
+    if(cards.error) setError(cards.error);
 
   /* useEffect(() => {
     async function getMyQuestionnaires() {
@@ -58,7 +60,7 @@ export const QuestionnaireManage = ({ ...props }) => {
         <h1 className="h3 mb-0 text-gray-800">My Questionnaires</h1>
       </div>
       {error && <Alert variant={"danger"}>{error}</Alert>}
-      <div className="row">{!loading && cards}</div>
+      {cards.length === 0 ? <p>No questionaires</p> :<div className="row">{!loading && cards}</div>}
     </>
   );
 };

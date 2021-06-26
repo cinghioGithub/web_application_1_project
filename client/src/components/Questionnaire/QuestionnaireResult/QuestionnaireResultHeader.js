@@ -17,7 +17,7 @@ export const QuestionnaireResultHeader = ({ ...props }) => {
                 <Button text={"Previous"} type={"primary"} disabled={pages===1} onClick={previous} />
               </div>
               <h6 className="m-0 font-weight-bold text-primary text-lg col-8 d-flex justify-content-center align-items-center">
-                User: <span className="text-dark ml-1">{username}</span>
+                Name: <span className="text-dark ml-1">{username}</span>
               </h6>
               <div className="pr-4 col-2 d-flex justify-content-end">
                 <Button text={"Next"} type={"primary"} disabled={pages===1} onClick={next} />

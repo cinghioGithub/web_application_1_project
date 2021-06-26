@@ -25,7 +25,7 @@ export const QuestionnaireResultQuestion = ({ ...props }) => {
                   value={answers.answer ? answers.answer : ''}
                   maxLength={200}
                   disabled={true}
-                  placeholder="Insert here your answer"
+                  placeholder="There is no answer"
                 ></textarea>
               </div>
             </>

@@ -53,12 +53,12 @@ export const QuestionnaireCreate = ({ ...props }) => {
       console.log(questionnaire);
       try{
         const response = await API.insertQuestionnaire(questionnaire);
-        setRefreshAdmin(true);
         //setRefresh(true);
       }
       catch(err){
         setError(err.error);
       }
+      setRefreshAdmin(true);
       //questionnaires.push(questionnaire);
     };
     if (created) {

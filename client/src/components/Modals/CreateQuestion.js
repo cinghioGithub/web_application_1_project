@@ -165,7 +165,7 @@ export function CreateQuestion({ ...props }) {
           onSubmit={(event) => submitQuestion(event)}
         >
           <Form.Group>
-            <Form.Label col>
+            <Form.Label>
               Title <span className="text-danger">*Required</span>
             </Form.Label>
             <Form.Control

@@ -28,6 +28,9 @@ async function getAdminQuestionnaires() {
     const questionnaires = await response.json();
     return questionnaires;
   } else {
+    if(response.status === 404){
+      return [];
+    }
     const error = await response.json();
     throw error;
   }

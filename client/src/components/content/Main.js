@@ -17,6 +17,8 @@ export const Main = ({ ...props }) => {
   const [loadingQuestionnaire, setLoadingQuestionnaire] = useState(true);
   const [loadingMyQuestionnaire, setLoadingMyQuestionnaire] = useState(true);
   const [error, setError] = useState();
+  const [userIsAdmin, setUserIsAdmin] = useState(isLogged);
+  const [errorAdmin, setErrorAdmin] = useState();
 
   useEffect(() => {
     async function getQuestionnaires() {
@@ -34,7 +36,7 @@ export const Main = ({ ...props }) => {
       getQuestionnaires();
       setRefresh(false);
     }
-  }/*, [refresh]*/);
+  }, [refresh]);
 
   useEffect(() => {
     async function getMyQuestionnaires() {
@@ -43,21 +45,24 @@ export const Main = ({ ...props }) => {
         setMyQuestionnaires(response);
       } catch (err) {
         setError(err.error);
-        // da gestire
+        //setMyQuestionnaires(err);
       }
     }
     //console.log(refreshAdmin);
     //console.log(user);
-    if (refreshAdmin && isLogged) {
+    if (refreshAdmin && userIsAdmin) {
       getMyQuestionnaires();
       setLoadingMyQuestionnaire(false);
       setRefreshAdmin(false);
       setRefresh(true);
     }
-  }/*,[refreshAdmin, isLogged]*/);
+  },[refreshAdmin, userIsAdmin]);
 
   useEffect(() => {
-    setRefreshAdmin(true);
+    if(isLogged){
+      setRefreshAdmin(true);
+    }
+    setUserIsAdmin(isLogged);
   }, [isLogged]);
 
   return (

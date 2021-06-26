@@ -6,7 +6,7 @@ const QuestionnaireCreateResult = ({ ...props }) => {
   return (
     <div className="row">
       <div className="col-10 offset-1 mb-1">
-        <div className="card shadow mb-4">
+        <div className="card mb-4">
           <div className="card-header py-3">
             <h6 className="m-0 font-weight-bold text-center h2 text-primary">
               {title}

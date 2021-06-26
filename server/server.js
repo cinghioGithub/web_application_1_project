@@ -94,7 +94,7 @@ app.get('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
     try{
       const result = await db.getQuestionnairesByUser(req.user.id);
       if (result.error) {
-        return res.status(404).json(result);
+        return res.status(404).json(result);   //TEST ERRORE, DA RIMETTERE 404
       } else{
         return res.status(200).json(result);
       }      
@@ -282,7 +282,12 @@ app.delete('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
           return res.status(200).json(result);
         }
         else{
-          return res.status(401).json({ error: "Unauthorized" });
+          if(user.error){
+            return res.status(404).json(user);
+          }
+          else{
+            return res.status(401).json({ error: "Unauthorized" });
+          }
         }
       }
       catch(err){

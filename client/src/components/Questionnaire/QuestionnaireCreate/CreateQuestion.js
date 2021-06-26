@@ -1,11 +1,4 @@
-import {
-  Modal,
-  Form,
-  Col,
-  Alert,
-  Spinner,
-  Button as ButtonBootstrap,
-} from "react-bootstrap";
+import {Modal,Form,Col,Alert,Spinner,Button as ButtonBootstrap} from "react-bootstrap";
 import Button from "../../Button";
 import { useState } from "react";
 

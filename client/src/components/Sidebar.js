@@ -19,7 +19,7 @@ export const Sidebar = ({ ...props }) => {
       <li className="nav-item active">
         <Link className="nav-link" to="/">
           {/*<i className="fas fa-fw fa-tachometer-alt"></i>*/}
-          <span className="ml-1">Home</span>
+          <span className="ml-1">Questionnaires To Compile</span>
         </Link>
       </li>
 

@@ -12,8 +12,8 @@
 
 ## API Server
 
-- POST `/api/login`
-  - request parameters and request body content
+- POST `/api/sessions`
+  - request body content: {username:<username>, password:<password>}
   - response body content
 - GET `/api/something`
   - request parameters

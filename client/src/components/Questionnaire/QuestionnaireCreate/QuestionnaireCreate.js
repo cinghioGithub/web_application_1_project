@@ -6,7 +6,7 @@ import EditTitle from "../../Modals/EditTitle";
 import API from "../../../API.js";
 
 export const QuestionnaireCreate = ({ ...props }) => {
-  const { user, setRefreshAdmin, setRefresh } = props;
+  const { user, setRefreshUser, setRefresh } = props;
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState("");
@@ -60,7 +60,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
         setError(err.error);
       }
       setCreated(true);
-      //setRefreshAdmin(true);
+      //setRefreshUser(true);
       //questionnaires.push(questionnaire);
     };
     if (create) {
@@ -72,7 +72,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
 
   useEffect(() => {
     if(created){
-      setRefreshAdmin(true);
+      setRefreshUser(true);
       setCreated(false);
     }
   }, [created]);

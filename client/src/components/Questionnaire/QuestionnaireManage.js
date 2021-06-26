@@ -5,7 +5,7 @@ import API from "../../API.js";
 import { Alert } from "react-bootstrap";
 
 export const QuestionnaireManage = ({ ...props }) => {
-  const { user, loading, setRefreshAdmin, setRefresh, myQuestionnaires } = props;
+  const { user, loading, setRefreshUser, setRefresh, myQuestionnaires } = props;
   //const [loading, setLoading] = useState(true);
   const [loadDelete, setLoadDelete] = useState();
   const [deleted, setDeleted] = useState(false);
@@ -20,13 +20,13 @@ export const QuestionnaireManage = ({ ...props }) => {
     }
     setLoadDelete();
     setDeleted(true);
-    //setRefreshAdmin(true);
+    //setRefreshUser(true);
     //setRefresh(true);
   };
 
   useEffect(() => {
     if(deleted){
-      setRefreshAdmin(true);
+      setRefreshUser(true);
       setDeleted(false);
     }
   }, [deleted]);
@@ -56,13 +56,13 @@ export const QuestionnaireManage = ({ ...props }) => {
         // da gestire
       }
     }
-    console.log(refreshAdmin);
-    if (refreshAdmin) {
+    console.log(refreshUser);
+    if (refreshUser) {
       getMyQuestionnaires();
       setLoading(false);
-      setRefreshAdmin(false);
+      setRefreshUser(false);
     }
-  }, [refreshAdmin]); */
+  }, [refreshUser]); */
 
   console.log(loading);
 

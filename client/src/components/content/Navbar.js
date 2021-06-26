@@ -42,11 +42,11 @@ export const Navbar = ({ ...props }) => {
                   <span className="mr-2 d-none d-lg-inline text-gray-600 small">
                     {user.name}
                   </span>
-                  <img
+                  {/*<img
                     alt=""
                     className="img-profile rounded-circle"
                     src={img}
-                  />
+                  />*/}
                 </>
               }
             >

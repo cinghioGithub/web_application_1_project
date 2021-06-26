@@ -10,7 +10,7 @@ import Login from "./Login";
 
 export const Main = ({ ...props }) => {
   const { user, login, isLogged } = props;
-  const [refreshAdmin, setRefreshAdmin] = useState(true);
+  const [refreshUser, setRefreshUser] = useState(true);
   const [refresh, setRefresh] = useState(true);
   const [questionnaires, setQuestionnaires] = useState([]);
   const [myQuestionnaires, setMyQuestionnaires] = useState([]);
@@ -49,19 +49,19 @@ export const Main = ({ ...props }) => {
       }
       setLoadingMyQuestionnaire(false);
     }
-    //console.log(refreshAdmin);
+    //console.log(refreshUser);
     //console.log(user);
     console.log("3");
-    if (refreshAdmin && userIsAdmin) {
+    if (refreshUser && userIsAdmin) {
       getMyQuestionnaires();
-      setRefreshAdmin(false);
+      setRefreshUser(false);
       setRefresh(true);
     }
-  }/*,[refreshAdmin, userIsAdmin]*/);
+  }/*,[refreshUser, userIsAdmin]*/);
 
   useEffect(() => {
     if(isLogged){
-      setRefreshAdmin(true);
+      setRefreshUser(true);
     }
     setUserIsAdmin(isLogged);
   }, [isLogged]);
@@ -70,10 +70,10 @@ export const Main = ({ ...props }) => {
     <div className="container-fluid" style={{ height: "100%" }}>
       <Switch>
         <Route path="/login">
-          {user ? <Redirect to="/" /> : <Login login={login} setRefreshAdmin={setRefreshAdmin}/>}
+          {user ? <Redirect to="/" /> : <Login login={login} setRefreshUser={setRefreshUser}/>}
         </Route>
         <Route path="/compile/:id">
-          <QuestionnaireCompile questionnaires={questionnaires} setRefresh={setRefresh} isLogged={isLogged} setRefreshAdmin={setRefreshAdmin}/*setQuestionnaires={setQuestionnaires}*/ />
+          <QuestionnaireCompile questionnaires={questionnaires} setRefresh={setRefresh} isLogged={isLogged} setRefreshUser={setRefreshUser}/*setQuestionnaires={setQuestionnaires}*/ />
         </Route>
         <Route path="/results/:id">
           {user ? <QuestionnaireResult user={user} /> : <Redirect to="/" />}
@@ -84,7 +84,7 @@ export const Main = ({ ...props }) => {
               loading={loadingMyQuestionnaire}
               myQuestionnaires={myQuestionnaires}
               user={user}
-              setRefreshAdmin={setRefreshAdmin}
+              setRefreshUser={setRefreshUser}
               setRefresh={setRefresh}
             />
           ) : (
@@ -95,7 +95,7 @@ export const Main = ({ ...props }) => {
           {user ? (
             <QuestionnaireCreate
               user={user}
-              setRefreshAdmin={setRefreshAdmin}
+              setRefreshUser={setRefreshUser}
             />
           ) : (
             <Redirect to="/" />

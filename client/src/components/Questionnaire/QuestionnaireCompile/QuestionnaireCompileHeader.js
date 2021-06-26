@@ -2,7 +2,7 @@ import Button from "../../Various/Button";
 import ProgressBar from "../../Various/ProgressBar";
 
 export const QuestionnaireCompileHeader = ({ ...props }) => {
-  const { title, cursor, max } = props;
+  const { title /*, cursor, max*/ } = props;
   return (
     <div className="row">
       <div className="col-10 offset-1 mb-1">

@@ -12,6 +12,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
   const [title, setTitle] = useState("");
   const [start, setStart] = useState(false);
   const [error, setError] = useState("");
+  const [create, setCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [showAddQuestion, setShowAddQuestion] = useState(false);
   const [showEditTitle, setShowEditTitle] = useState(false);
@@ -58,17 +59,25 @@ export const QuestionnaireCreate = ({ ...props }) => {
       catch(err){
         setError(err.error);
       }
-      setRefreshAdmin(true);
+      setCreated(true);
+      //setRefreshAdmin(true);
       //questionnaires.push(questionnaire);
     };
-    if (created) {
+    if (create) {
       setLoading(true);
       submitQuestionnaire();
       setLoading(false);
     }
+  }, [create]);
+
+  useEffect(() => {
+    if(created){
+      setRefreshAdmin(true);
+      setCreated(false);
+    }
   }, [created]);
 
-  return created ? (
+  return create ? (
     <QuestionnaireCreateResult loading={loading} title={title} error={error} />
   ) : (
     <>
@@ -81,7 +90,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
         setTitle={setTitle}
         start={start}
         setStart={setStart}
-        setCreated={setCreated}
+        setCreate={setCreate}
         showAddQuestion={handleShowAddQuestion}
         showEditTitle={handleShowEditTitle}
       />

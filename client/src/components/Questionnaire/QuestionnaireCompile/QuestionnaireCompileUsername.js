@@ -1,7 +1,15 @@
 import Button from "../../Various/Button";
+import { useState } from 'react'
 
 export const QuestionnaireCompileUsername = ({ ...props }) => {
-  const {username, setUsername, submit} = props;
+  const {/*username,*/ setUsername, submit} = props;
+  const [user, setUser] = useState("");
+
+  const handleOnChange = (event) => {
+    setUser(event.target.value);
+    setUsername(event.target.value);
+  };
+
   return (
     <div className="row">
       <div className="col-10 offset-1 mb-1">
@@ -18,15 +26,15 @@ export const QuestionnaireCompileUsername = ({ ...props }) => {
                 type="text"
                 className="form-control form-control-lg col-4"
                 id="username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                value={user}
+                onChange={(event) => handleOnChange(event)}
                 placeholder="Insert here your Name"
               />
               <div className="col-2 d-flex justify-content-center align-items-center">
                 <Button
                   text={"Submit"}
                   type={"success"}
-                  disabled={!username}
+                  disabled={!user}
                   onClick={submit}
                 />
               </div>

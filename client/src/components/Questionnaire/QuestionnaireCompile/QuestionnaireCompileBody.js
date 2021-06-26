@@ -20,7 +20,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     question,
     handleSetAnswer,
     answers,
-    setForward,
+    setForward
   } = props;
 
   /* Questionnaire States */
@@ -211,9 +211,9 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     <>
       <QuestionnaireCompileHeader
         title={title}
-        cursor={current}
+        /*cursor={current}
         max={pages}
-        submit={finish}
+        submit={finish}*/
       />
       {!finished ? (
         <>

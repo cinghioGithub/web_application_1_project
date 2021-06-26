@@ -6,7 +6,7 @@ import { useRouteMatch } from "react-router-dom";
 import API from "../../../API.js";
 
 export const QuestionnaireCompile = ({ ...props }) => {
-  const { questionnaires, setRefresh, setQuestionnaires } = props;
+  const { questionnaires, setRefresh /*, setQuestionnaires*/, isLogged, setRefreshAdmin } = props;
   const [loadQuestionnaire, setLoadQuestionnaire] = useState(true);
   const [loadQuestion, setLoadQuestion] = useState(true);
   const [loadResult, setLoadResult] = useState(false);
@@ -17,6 +17,7 @@ export const QuestionnaireCompile = ({ ...props }) => {
   const [answers, setAnswers] = useState([]);
   const [cursor, setCursor] = useState(1);
   const [forward, setForward] = useState(false);
+  const [compiled, setCompiled] = useState(false);
 
   const id = useRouteMatch().params.id;
 
@@ -67,9 +68,12 @@ export const QuestionnaireCompile = ({ ...props }) => {
   useEffect(() => {
     async function postCompile(compile) {
       try {
-        await API.insertAnswer(parseInt(id), compile);
-        setLoadResult(false);
-        setRefresh(true);
+        const result = await API.insertAnswer(parseInt(id), compile);
+        if(result){
+          console.log("1");
+          setLoadResult(false);
+          setCompiled(true);
+        }
       } catch (err) {
         setError(err.error);
         setLoadResult(false);
@@ -99,6 +103,15 @@ export const QuestionnaireCompile = ({ ...props }) => {
       } */
     }
   }, [forward]);
+
+  useEffect(() => {
+    if(compiled){
+      console.log("2");
+      if(isLogged) setRefreshAdmin(true);
+      else setRefresh(true);
+      setCompiled(false);
+    }
+  }, [compiled]);
 
   return (
     <>

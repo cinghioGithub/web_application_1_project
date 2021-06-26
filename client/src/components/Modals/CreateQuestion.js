@@ -193,7 +193,7 @@ export function CreateQuestion({ ...props }) {
                   custom
                   type="checkbox"
                   id="formOpen"
-                  label="is Open Question?"
+                  label="Open Question"
                   onChange={handleOpen}
                   checked={open}
                 />
@@ -207,7 +207,7 @@ export function CreateQuestion({ ...props }) {
                   custom
                   type="checkbox"
                   id="formRequired"
-                  label="Required?"
+                  label="Mandatory"
                   onChange={handleRequired}
                   checked={required}
                 />

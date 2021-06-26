@@ -36,7 +36,7 @@ export const Main = ({ ...props }) => {
       getQuestionnaires();
       setRefresh(false);
     }
-  }, [refresh]);
+  }/*, [refresh]*/);
 
   useEffect(() => {
     async function getMyQuestionnaires() {
@@ -47,16 +47,16 @@ export const Main = ({ ...props }) => {
         setError(err.error);
         //setMyQuestionnaires(err);
       }
+      setLoadingMyQuestionnaire(false);
     }
     //console.log(refreshAdmin);
     //console.log(user);
     if (refreshAdmin && userIsAdmin) {
       getMyQuestionnaires();
-      setLoadingMyQuestionnaire(false);
       setRefreshAdmin(false);
       setRefresh(true);
     }
-  },[refreshAdmin, userIsAdmin]);
+  }/*,[refreshAdmin, userIsAdmin]*/);
 
   useEffect(() => {
     if(isLogged){
@@ -72,7 +72,7 @@ export const Main = ({ ...props }) => {
           {user ? <Redirect to="/" /> : <Login login={login} setRefreshAdmin={setRefreshAdmin}/>}
         </Route>
         <Route path="/compile/:id">
-          <QuestionnaireCompile questionnaires={questionnaires} setRefresh={setRefresh} setQuestionnaires={setQuestionnaires} />
+          <QuestionnaireCompile questionnaires={questionnaires} setRefresh={setRefresh} isLogged={isLogged} setRefreshAdmin={setRefreshAdmin}/*setQuestionnaires={setQuestionnaires}*/ />
         </Route>
         <Route path="/results/:id">
           {user ? <QuestionnaireResult user={user} /> : <Redirect to="/" />}

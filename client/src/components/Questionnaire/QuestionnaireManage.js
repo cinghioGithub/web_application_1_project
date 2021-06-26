@@ -1,5 +1,6 @@
 import QuestionnaireCard from "./QuestionnaireCard";
 import { useState, useEffect } from "react";
+import Spinner from "../Various/Spinner";
 import API from "../../API.js";
 import { Alert } from "react-bootstrap";
 
@@ -7,6 +8,7 @@ export const QuestionnaireManage = ({ ...props }) => {
   const { user, loading, setRefreshAdmin, setRefresh, myQuestionnaires } = props;
   //const [loading, setLoading] = useState(true);
   const [loadDelete, setLoadDelete] = useState();
+  const [deleted, setDeleted] = useState(false);
   const [error, setError] = useState();
 
   const deleteQuestionnaire = async (id) => {
@@ -17,9 +19,17 @@ export const QuestionnaireManage = ({ ...props }) => {
       setError(err.error);
     }
     setLoadDelete();
-    setRefreshAdmin(true);
+    setDeleted(true);
+    //setRefreshAdmin(true);
     //setRefresh(true);
   };
+
+  useEffect(() => {
+    if(deleted){
+      setRefreshAdmin(true);
+      setDeleted(false);
+    }
+  }, [deleted]);
 
   const cards = myQuestionnaires.error ? {error: myQuestionnaires.error} : myQuestionnaires
     .filter((questionnaire) => user.id === questionnaire.admin)
@@ -54,13 +64,15 @@ export const QuestionnaireManage = ({ ...props }) => {
     }
   }, [refreshAdmin]); */
 
+  console.log(loading);
+
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">My Questionnaires</h1>
       </div>
-      {error && <Alert variant={"danger"}>{error}</Alert>}
-      {cards.length === 0 ? <p>No questionaires</p> :<div className="row">{!loading && cards}</div>}
+      {error ? <Alert variant={"danger"}>{error}</Alert> :
+      (loading ? <Spinner/> : (cards.length === 0 ? <p>No questionaires</p> :<div className="row">{cards}</div>))}
     </>
   );
 };

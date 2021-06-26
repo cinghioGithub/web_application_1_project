@@ -12,7 +12,7 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
     setQuestions,
     title,
     setTitle,
-    setCreated,
+    setCreate,
     start,
     setStart,
     showAddQuestion,
@@ -73,7 +73,7 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
             editTitle={showEditTitle}
             addQuestion={showAddQuestion}
             numQuestions={questions.length}
-            submit={() => setCreated(true)}
+            submit={() => setCreate(true)}
           />
           <div className="row">{loading ? <Spinner /> : questions_}</div>
           {/*<div className="row d-flex justify-content-center align-items-center">

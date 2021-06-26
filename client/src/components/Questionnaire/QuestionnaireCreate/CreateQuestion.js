@@ -187,30 +187,26 @@ export function CreateQuestion({ ...props }) {
               <Form.Group
                 as={Col}
                 md="6"
-                className="d-flex align-items-center justify-content-center"
-              >
+                className="d-flex align-items-center justify-content-center">
                 <Form.Check
                   custom
                   type="checkbox"
                   id="formOpen"
                   label="Open Question"
                   onChange={handleOpen}
-                  checked={open}
-                />
+                  checked={open}/>
               </Form.Group>
               <Form.Group
                 as={Col}
                 md="6"
-                className="d-flex align-items-center justify-content-center"
-              >
+                className="d-flex align-items-center justify-content-center">
                 <Form.Check
                   custom
                   type="checkbox"
                   id="formRequired"
                   label="Mandatory"
                   onChange={handleRequired}
-                  checked={required}
-                />
+                  checked={required}/>
               </Form.Group>
             </Form.Row>
           ) : (
@@ -219,22 +215,19 @@ export function CreateQuestion({ ...props }) {
                 <Form.Group
                   as={Col}
                   md="4"
-                  className="d-flex align-items-center justify-content-center"
-                >
+                  className="d-flex align-items-center justify-content-center">
                   <Form.Check
                     custom
                     type="checkbox"
                     id="formOpen"
                     label="Open Question"
                     onChange={handleOpen}
-                    checked={open}
-                  />
+                    checked={open}/>
                 </Form.Group>
                 <Form.Group
                   as={Col}
                   md="4"
-                  className="d-flex align-items-center justify-content-center"
-                >
+                  className="d-flex align-items-center justify-content-center">
                   <Form.Label className="mr-2 mb-0">Min</Form.Label>
                   <Form.Control
                     className="mr-2"
@@ -244,8 +237,7 @@ export function CreateQuestion({ ...props }) {
                     isInvalid={optionMin > optionMax}
                     type="number"
                     value={optionMin}
-                    onChange={(event) => setOptionMin(event.target.value)}
-                  />
+                    onChange={(event) => setOptionMin(event.target.value)}/>
                   <Form.Control.Feedback tooltip type="invalid">
                     Min can't be greater than Max
                   </Form.Control.Feedback>
@@ -253,8 +245,7 @@ export function CreateQuestion({ ...props }) {
                 <Form.Group
                   as={Col}
                   md="4"
-                  className="d-flex align-items-center justify-content-center"
-                >
+                  className="d-flex align-items-center justify-content-center">
                   <Form.Label className="mr-2 mb-0">Max</Form.Label>
                   <Form.Control
                     required
@@ -263,8 +254,7 @@ export function CreateQuestion({ ...props }) {
                     isInvalid={invalidMax}
                     type="number"
                     value={optionMax}
-                    onChange={(event) => setOptionMax(event.target.value)}
-                  />
+                    onChange={(event) => setOptionMax(event.target.value)}/>
                   <Form.Control.Feedback tooltip type="invalid">
                     Max is greater than options available
                   </Form.Control.Feedback>
@@ -285,16 +275,14 @@ export function CreateQuestion({ ...props }) {
                         type="text"
                         value={optionTitle}
                         onChange={(event) => setOptionTitle(event.target.value)}
-                        placeholder="Option here"
-                      />
+                        placeholder="Option here"/>
                     </Form.Group>
                     <Form.Group className="d-flex align-items-center">
                       <Button
                         text={"Add Option"}
                         type={"warning"}
                         onClick={addOption}
-                        disabled={!optionTitle}
-                      />
+                        disabled={!optionTitle}/>
                     </Form.Group>
                   </Form.Row>
                 </>
@@ -313,8 +301,7 @@ export function CreateQuestion({ ...props }) {
                 variant="danger"
                 type="button"
                 onClick={() => resetQuestion()}
-                disabled={loading}
-              >
+                disabled={loading}>
                 Reset
               </ButtonBootstrap>
             </Form.Group>
@@ -323,8 +310,7 @@ export function CreateQuestion({ ...props }) {
                 className="d-flex align-items-center"
                 variant="success"
                 type="submit"
-                disabled={loading || !title || (!open && options.length === 0)}
-              >
+                disabled={loading || !title || (!open && options.length === 0)}>
                 {loading && <Spinner animation="border" size="sm" />}
                 Save Question
               </ButtonBootstrap>

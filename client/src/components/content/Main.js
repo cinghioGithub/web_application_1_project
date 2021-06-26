@@ -51,6 +51,7 @@ export const Main = ({ ...props }) => {
     }
     //console.log(refreshAdmin);
     //console.log(user);
+    console.log("3");
     if (refreshAdmin && userIsAdmin) {
       getMyQuestionnaires();
       setRefreshAdmin(false);

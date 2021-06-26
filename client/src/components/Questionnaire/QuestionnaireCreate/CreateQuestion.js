@@ -6,7 +6,7 @@ import {
   Spinner,
   Button as ButtonBootstrap,
 } from "react-bootstrap";
-import Button from "../Various/Button";
+import Button from "../../Button";
 import { useState } from "react";
 
 export function CreateQuestion({ ...props }) {

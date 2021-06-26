@@ -1,4 +1,4 @@
-import Button from "../../Various/Button";
+import Button from "../../Button";
 
 export const QuestionnaireResultHeader = ({ ...props }) => {
   const { title, next, previous, username, pages } = props;

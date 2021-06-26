@@ -1,4 +1,4 @@
-import Button from "../../Various/Button";
+import Button from "../../Button";
 import Pagination from "react-bootstrap/Pagination";
 
 export const QuestionnairePagination = ({ ...props }) => {

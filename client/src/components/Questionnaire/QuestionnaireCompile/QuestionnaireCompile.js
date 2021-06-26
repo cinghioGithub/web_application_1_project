@@ -1,6 +1,6 @@
 import QuestionnaireCompileBody from "./QuestionnaireCompileBody";
 import QuestionnaireCompileResult from "./QuestionnaireCompileResult";
-import Spinner from "../../Various/Spinner";
+import Spinner from "../../Spinner";
 import { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import API from "../../../API.js";

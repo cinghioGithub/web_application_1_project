@@ -1,5 +1,5 @@
-import Button from "../../Various/Button";
-import Spinner from "../../Various/Spinner";
+import Button from "../../Button";
+import Spinner from "../../Spinner";
 
 const QuestionnaireCreateResult = ({ ...props }) => {
   const { title, loading, error } = props;

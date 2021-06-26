@@ -2,7 +2,7 @@ import QuestionnaireResultHeader from "./QuestionnaireResultHeader";
 import QuestionnaireResultPagination from "./QuestionnaireResultPagination";
 import QuestionnaireResultQuestion from "./QuestionnaireResultQuestion";
 import { Alert } from "react-bootstrap";
-import Spinner from "../../Various/Spinner";
+import Spinner from "../../Spinner";
 import { useEffect } from "react";
 
 export const QuestionnaireResultBody = ({ ...props }) => {

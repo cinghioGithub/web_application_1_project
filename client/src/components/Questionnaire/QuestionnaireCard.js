@@ -1,4 +1,4 @@
-import { Button } from "../Various/Button";
+import { Button } from "../Button";
 
 export const QuestionnaireCard = ({ ...props }) => {
   const { questionnaire, isAdmin, remove, loadingID } = props;

@@ -13,15 +13,17 @@
 ## API Server
 
 - POST `/api/sessions`
-  - request body content: {username:<username>, password:<password>}
-  - response body content
-- GET `/api/something`
-  - request parameters
-  - response body content
-- POST `/api/something`
-  - request parameters and request body content
-  - response body content
-- ...
+  - request body content: `{username:<username>, password:<password>}`
+  - response body content: `{id: <id>, username:<username>, name:<name>}`
+- GET `/api/sessions/current`
+  - No requested body. Check is performed with cookie
+  - response body content: `{id: <id>, username:<username>, name:<name>}`
+- DELETE `/api/sessions/current`
+  - No requested body
+  - No response body
+- GET `/api/admin/questionnaires`
+  - Requested body: 
+  - Response body: 
 
 ## Database Tables
 

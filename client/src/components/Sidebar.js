@@ -1,4 +1,4 @@
-import Button from "../Various/Button";
+import Button from "./Button";
 import { Link } from "react-router-dom";
 
 export const Sidebar = ({ ...props }) => {

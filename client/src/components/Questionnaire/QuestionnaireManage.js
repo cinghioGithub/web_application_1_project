@@ -1,6 +1,6 @@
 import QuestionnaireCard from "./QuestionnaireCard";
 import { useState, useEffect } from "react";
-import Spinner from "../Various/Spinner";
+import Spinner from "../Spinner";
 import API from "../../API.js";
 import { Alert } from "react-bootstrap";
 

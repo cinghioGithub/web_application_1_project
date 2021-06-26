@@ -1,4 +1,4 @@
-import Button from "../../Various/Button";
+import Button from "../../Button";
 
 export const QuestionnaireCreateQuestion = ({ ...props }) => {
   const { question, moveUp, moveDown, numQuestions, remove } = props;

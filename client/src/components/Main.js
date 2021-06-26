@@ -1,9 +1,9 @@
-import QuestionnaireCompile from "../Questionnaire/QuestionnaireCompile/QuestionnaireCompile";
-import QuestionnaireResumes from "../Questionnaire/QuestionnaireResumes";
-import QuestionnaireManage from "../Questionnaire/QuestionnaireManage";
-import QuestionnaireResult from "../Questionnaire/QuestionnaireResult/QuestionnaireResult";
-import QuestionnaireCreate from "../Questionnaire/QuestionnaireCreate/QuestionnaireCreate";
-import API from "../../API.js";
+import QuestionnaireCompile from "./Questionnaire/QuestionnaireCompile/QuestionnaireCompile";
+import QuestionnaireResumes from "./Questionnaire/QuestionnaireResumes";
+import QuestionnaireManage from "./Questionnaire/QuestionnaireManage";
+import QuestionnaireResult from "./Questionnaire/QuestionnaireResult/QuestionnaireResult";
+import QuestionnaireCreate from "./Questionnaire/QuestionnaireCreate/QuestionnaireCreate";
+import API from "./../API.js";
 import { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";

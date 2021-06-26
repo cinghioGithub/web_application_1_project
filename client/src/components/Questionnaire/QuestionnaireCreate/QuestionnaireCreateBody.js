@@ -1,8 +1,8 @@
 import QuestionnaireCreateHeader from "./QuestionnaireCreateHeader";
 import QuestionnaireCreateQuestion from "./QuestionnaireCreateQuestion";
 import QuestionnaireCreateAddTitle from "./QuestionnaireCreateAddTitle";
-import Button from "../../Various/Button";
-import Spinner from "../../Various/Spinner";
+import Button from "../../Button";
+import Spinner from "../../Spinner";
 
 export const QuestionnaireCreateBody = ({ ...props }) => {
   const {

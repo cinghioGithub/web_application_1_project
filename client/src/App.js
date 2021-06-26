@@ -1,7 +1,7 @@
-import Sidebar from "./components/content/Sidebar";
-import Navbar from "./components/content/Navbar";
-import Main from "./components/content/Main";
-import Spinner from "./components/Various/Spinner";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+import Spinner from "./components/Spinner";
 //import Footer from "./components/content/Footer";
 import { useEffect, useState } from "react";
 import API from "./API.js";

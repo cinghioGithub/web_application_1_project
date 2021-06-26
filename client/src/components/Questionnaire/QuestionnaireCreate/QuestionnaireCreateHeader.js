@@ -1,4 +1,4 @@
-import Button from "../../Various/Button";
+import Button from "../../Button";
 
 export const QuestionnaireCreateHeader = ({ ...props }) => {
   const { title, editTitle, addQuestion, numQuestions, submit } = props;
@@ -9,7 +9,7 @@ export const QuestionnaireCreateHeader = ({ ...props }) => {
           <div className="card mb-4">
             <div className={`card-header py-3 d-flex justify-content-between align-items-center ${numQuestions===0 ? 'create-questionnaire-empty-header': ''}`}>
               <div className="pl-2 ">
-                <Button text={"Back Home"} type={"danger"} url={"/"} />
+                <Button text={"Back"} type={"danger"} url={"/"} />
               </div>
               <h6 className="m-0 font-weight-bold text-center h2 text-primary">
                 {title} <Button

@@ -4,7 +4,7 @@ import QuestionnaireCompileHeader from "./QuestionnaireCompileHeader";
 import QuestionnairePagination from "./QuestionnaireCompilePagination";
 import QuestionnaireCompileQuestion from "./QuestionnaireCompileQuestion";
 import QuestionnaireCompileUsername from "./QuestionnaireCompileUsername";
-import Spinner from "../../Various/Spinner";
+import Spinner from "../../Spinner";
 
 export const QuestionnaireCompileBody = ({ ...props }) => {
   const {

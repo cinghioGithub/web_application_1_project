@@ -1,8 +1,7 @@
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //import { faPollH } from "@fortawesome/free-solid-svg-icons";
 import { Navbar as NavbarBootstrap, NavDropdown } from "react-bootstrap";
-import Button from "../Various/Button";
-import img from "../../img/undraw_profile_2.svg";
+import Button from "./Button";
 
 export const Navbar = ({ ...props }) => {
   const { user, logout } = props;

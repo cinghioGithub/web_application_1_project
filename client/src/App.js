@@ -2,11 +2,9 @@ import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import Spinner from "./components/Spinner";
-//import Footer from "./components/content/Footer";
 import { useEffect, useState } from "react";
 import API from "./API.js";
 import { BrowserRouter as Router } from "react-router-dom";
-//import "./vendor/fontawesome-free/css/all.min.css";
 
 function App() {
   const [sessionCheck, setSessionCheck] = useState(true);

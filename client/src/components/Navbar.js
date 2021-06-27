@@ -1,5 +1,3 @@
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faPollH } from "@fortawesome/free-solid-svg-icons";
 import { Navbar as NavbarBootstrap, NavDropdown } from "react-bootstrap";
 import Button from "./Button";
 
@@ -8,7 +6,6 @@ export const Navbar = ({ ...props }) => {
   return (
     <>
       <NavbarBootstrap
-        //onToggle={toggleFunc}
         bg="success"
         expand="lg"
         className="navbar-light bg-white topbar mb-4 static-top border-bottom d-flex justify-content-between"
@@ -22,7 +19,6 @@ export const Navbar = ({ ...props }) => {
           className="navbar-brand text-primary font-weight-bold d-flex align-items-center"
           href="/"
         >
-          {/*<FontAwesomeIcon icon={faPollH} className={"mr-2 mb-0 h1"} />*/}
           Questionnaires 
         </NavbarBootstrap.Brand>
         <ul className="navbar-nav ml-auto">
@@ -41,11 +37,6 @@ export const Navbar = ({ ...props }) => {
                   <span className="mr-2 d-none d-lg-inline text-gray-600 small">
                     {user.name}
                   </span>
-                  {/*<img
-                    alt=""
-                    className="img-profile rounded-circle"
-                    src={img}
-                  />*/}
                 </>
               }
             >
@@ -56,34 +47,6 @@ export const Navbar = ({ ...props }) => {
           )}
         </ul>
       </NavbarBootstrap>
-      {/* <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <button
-          id="sidebarToggleTop"
-          className="btn btn-link d-md-none rounded-circle mr-3"
-        >
-          <i className="fa fa-bars"></i>
-        </button>
-
-        <ul className="navbar-nav ml-auto">
-          <div className="topbar-divider d-none d-sm-block"></div>
-          <li className="nav-item dropdown no-arrow">
-            <a
-              className="nav-link dropdown-toggle"
-              href="/login"
-              id="userDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                {user.username}
-              </span>
-              <img alt="" className="img-profile rounded-circle" src={img} />
-            </a>
-          </li>
-        </ul>
-      </nav> */}
     </>
   );
 };

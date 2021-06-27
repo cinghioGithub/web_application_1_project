@@ -16,8 +16,6 @@ exports.getUser = (username, password) => {
       } else {
         if (row) {
           const user = { id: row.id, username: row.username, name: row.name };
-          //console.log("test bcrypt " + user.username + " " + password);
-          //resolve(user);
           console.log("DATABASE USER DATA: ", user);
           console.log("DATABASE USER HASH PASSWORD: ", row.hash);
           bcrypt.compare(password, row.hash).then((result) => {

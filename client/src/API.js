@@ -128,11 +128,9 @@ async function logOut() {
 }
 
 async function checkSession() {
-  //console.log("CHECK SESSION CLIENT API [START]");
   const response = await fetch("/api/sessions/current");
   const userInfo = await response.json();
   if (response.ok) {
-    //console.log("CHECK SESSION CLIENT API [OK]", userInfo);
     return userInfo;
   } else {
     throw userInfo;

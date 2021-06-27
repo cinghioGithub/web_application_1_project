@@ -1,6 +1,5 @@
 import QuestionnaireCreateHeader from "./QuestionnaireCreateHeader";
 import QuestionnaireCreateQuestion from "./QuestionnaireCreateQuestion";
-//import QuestionnaireCreateAddTitle from "./QuestionnaireCreateAddTitle";
 import Button from "../../Button";
 import Spinner from "../../Spinner";
 
@@ -13,10 +12,7 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
     title,
     setTitle,
     setCreate,
-    /*start,
-    setStart,*/
     showAddQuestion,
-    /*showEditTitle,*/
   } = props;
 
   const moveUp = (id) => {
@@ -77,8 +73,6 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
       </div>
       <QuestionnaireCreateHeader
         title={title}
-        /*editTitle={showEditTitle}
-        addQuestion={showAddQuestion}*/
         numQuestions={questions.length}
         submit={() => setCreate(true)}
         setTitle={setTitle}

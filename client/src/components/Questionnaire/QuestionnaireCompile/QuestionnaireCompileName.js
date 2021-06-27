@@ -1,8 +1,8 @@
 import Button from "../../Button";
 import { useState } from 'react'
 
-export const QuestionnaireCompileUsername = ({ ...props }) => {
-  const {/*username,*/ setUsername, submit} = props;
+export const QuestionnaireCompileName = ({ ...props }) => {
+  const { setUsername, submit} = props;
   const [user, setUser] = useState("");
 
   const handleOnChange = (event) => {
@@ -46,4 +46,4 @@ export const QuestionnaireCompileUsername = ({ ...props }) => {
   );
 };
 
-export default QuestionnaireCompileUsername;
+export default QuestionnaireCompileName;

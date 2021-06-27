@@ -34,7 +34,7 @@ export const QuestionnaireCompileQuestion = ({ ...props }) => {
                   value={answer}
                   maxLength={200}
                   onChange={(event) => setAnswer(event.target.value)}
-                  placeholder="Insert here your answer"
+                  placeholder="Insert here the answer"
                 ></textarea>
               </div>
             </>

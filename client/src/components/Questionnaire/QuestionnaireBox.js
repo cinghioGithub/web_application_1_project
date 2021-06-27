@@ -8,9 +8,6 @@ export const QuestionnaireBox = ({ ...props }) => {
   if(loadingID === questionnaire.id){
     if(questionnaireDeleted === false) setQuestionnaireDeleted(true);
   }
-  /*className={`card border-bottom-${
-          isAdmin ? "success" : "primary"
-        } h-100 py-0`}*/
   
   return (
     <div className="col-xl-4 col-md-6 mb-4">

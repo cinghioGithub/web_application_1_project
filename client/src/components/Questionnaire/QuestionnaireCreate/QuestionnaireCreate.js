@@ -2,20 +2,17 @@ import QuestionnaireCreateBody from "./QuestionnaireCreateBody";
 import QuestionnaireCreateResult from "./QuestionnaireCreateResult";
 import CreateQuestionModal from "./CreateQuestionModal";
 import { useEffect, useState } from "react";
-//import EditTitle from "./EditTitle";
 import API from "../../../API.js";
 
 export const QuestionnaireCreate = ({ ...props }) => {
-  const { user, setRefreshUser/*, setRefresh*/, setLoadingMyQuestionnaire } = props;
+  const { user, setRefreshUser, setLoadingMyQuestionnaire } = props;
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState("");
-  //const [start, setStart] = useState(false);
   const [error, setError] = useState("");
   const [create, setCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [showAddQuestion, setShowAddQuestion] = useState(false);
-  //const [showEditTitle, setShowEditTitle] = useState(false);
 
   const handleCloseAddQuestion = () => {
     setShowAddQuestion(false);
@@ -24,14 +21,6 @@ export const QuestionnaireCreate = ({ ...props }) => {
   const handleShowAddQuestion = () => {
     setShowAddQuestion(true);
   };
-
-  /*const handleCloseEditTitle = () => {
-    setShowEditTitle(false);
-  };
-
-  const handleShowEditTitle = () => {
-    setShowEditTitle(true);
-  };*/
 
   const handleSetQuestion = (question) => {
     setQuestions((questions) => {
@@ -43,9 +32,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
 
   useEffect(() => {
     const submitQuestionnaire = async () => {
-      //const ids = questionnaires.map((questionnaire) => questionnaire.id);
       const questionnaire = {
-        //id: Math.max(...ids) + 1,
         title: title,
         compiled: 0,
         admin: user.id,
@@ -55,19 +42,15 @@ export const QuestionnaireCreate = ({ ...props }) => {
       try{
         const response = await API.insertQuestionnaire(questionnaire);
         setLoading(false);
-        //setRefresh(true);
       }
       catch(err){
         setError(err.error);
       }
       setCreated(true);
-      //setRefreshUser(true);
-      //questionnaires.push(questionnaire);
     };
     if (create) {
       setLoading(true);
       submitQuestionnaire();
-      //setLoading(false);
     }
   }, [create, questions, title, user.id]); //questions, title, user.id added to suppress warning
 
@@ -90,11 +73,8 @@ export const QuestionnaireCreate = ({ ...props }) => {
         setQuestions={setQuestions}
         title={title}
         setTitle={setTitle}
-        /*start={start}
-        setStart={setStart}*/
         setCreate={setCreate}
         showAddQuestion={handleShowAddQuestion}
-        /*showEditTitle={handleShowEditTitle}*/
       />
       <CreateQuestionModal
         show={showAddQuestion}
@@ -102,12 +82,6 @@ export const QuestionnaireCreate = ({ ...props }) => {
         newQuestionId={questions.length + 1}
         handleSetQuestion={handleSetQuestion}
       />
-      {/*<EditTitle
-        show={showEditTitle}
-        onHide={handleCloseEditTitle}
-        title={title}
-        setTitle={setTitle}
-      />*/}
     </>
   );
 };

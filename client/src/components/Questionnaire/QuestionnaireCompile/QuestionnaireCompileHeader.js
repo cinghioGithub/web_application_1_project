@@ -1,7 +1,7 @@
 import Button from "../../Button";
 
 export const QuestionnaireCompileHeader = ({ ...props }) => {
-  const { title /*, cursor, max*/ } = props;
+  const { title } = props;
   return (
     <div className="row">
       <div className="col-10 offset-1 mb-1">
@@ -14,19 +14,6 @@ export const QuestionnaireCompileHeader = ({ ...props }) => {
               {title}
             </h6>
           </div>
-          {/*<div className="card-body row">
-            <div className="col-8">
-              <ProgressBar title={"Progress"} value={cursor} max={max} />
-            </div>
-            {/* <div className="col-2 d-flex justify-content-end align-items-center">
-              <Button
-                text={"Submit Questionnaire"}
-                type={"success"}
-                disabled={cursor !== max}
-                onClick={submit}
-              />
-            </div> }
-          </div>*/}
         </div>
       </div>
     </div>

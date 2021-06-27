@@ -1,7 +1,7 @@
 import Button from "../../Button";
 
 export const QuestionnaireCreateHeader = ({ ...props }) => {
-  const { title/*, editTitle, addQuestion*/, numQuestions, submit, setTitle } = props;
+  const { title, numQuestions, submit, setTitle } = props;
   return (
     <>
       <div className="row">
@@ -12,11 +12,7 @@ export const QuestionnaireCreateHeader = ({ ...props }) => {
                 <Button text={"Back"} type={"danger"} url={"/"} />
               </div>
               <h6 className="m-0 font-weight-bold text-center h2 text-primary">
-                {title ? title : "No Title"} {/*<Button
-                  text={"Edit Title"}
-                  type={"warning"}
-                  onClick={editTitle}
-                />*/}
+                {title ? title : "No Title"}
               </h6>
               <div className="pr-2">
                 <Button
@@ -45,13 +41,6 @@ export const QuestionnaireCreateHeader = ({ ...props }) => {
               />
             </div>
           </div>
-            {/*numQuestions>0 && <div className="card-body d-flex justify-content-start">
-                <Button
-                  text={"Add New Question"}
-                  type={"primary"}
-                  onClick={addQuestion}
-                />
-  </div>*/}
           </div>
         </div>
       </div>

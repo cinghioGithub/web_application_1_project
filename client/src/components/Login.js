@@ -5,7 +5,7 @@ import Logo from "./../img/logo.png";
 import API from "../API";
 
 export function Login({ ...props }) {
-  const { login /*, setRefreshUser*/ } = props;
+  const { login, setLoadingMyQuestionnaire} = props;
   const [email, setEmail] = useState("admin1@test.it");
   const [password, setPassword] = useState("password");
   const [error, setError] = useState("");
@@ -15,8 +15,8 @@ export function Login({ ...props }) {
     event.preventDefault();
     const credentials = { username: email, password: password };
     try {
-      console.log("TRYING LOGIN CLIENT");
       const user = await API.logIn(credentials);
+      setLoadingMyQuestionnaire(true);
       login(user);
     } catch (err) {
       setError(err.message);
@@ -63,37 +63,6 @@ export function Login({ ...props }) {
           > {loading && <Spinner animation="border" size="sm" />}Sign in
           </Button>
         </Form>
-        {/*<Row className="justify-content-center align-items-center mìvh-100">
-            <Col lg={4} md={8} xs={10}>
-              <Card>
-                <Card.Header as="h1">
-                  <div className="w-100 text-center">Welcome</div>
-                </Card.Header>
-                <Card.Body>
-                  <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control type="email" placeholder="Enter email" />
-                      <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                      </Form.Text>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                      <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                      Submit
-                    </Button>
-                  </Form>
-                </Card.Body>
-              </Card>
-            </Col>
-  </Row>*/}
       </Container>
     </main>
   );

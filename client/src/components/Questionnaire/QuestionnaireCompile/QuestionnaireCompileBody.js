@@ -3,7 +3,7 @@ import { Alert } from "react-bootstrap";
 import QuestionnaireCompileHeader from "./QuestionnaireCompileHeader";
 import QuestionnairePagination from "./QuestionnaireCompilePagination";
 import QuestionnaireCompileQuestion from "./QuestionnaireCompileQuestion";
-import QuestionnaireCompileUsername from "./QuestionnaireCompileUsername";
+import QuestionnaireCompileName from "./QuestionnaireCompileName";
 import Spinner from "../../Spinner";
 
 export const QuestionnaireCompileBody = ({ ...props }) => {
@@ -41,10 +41,6 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
       return newOptions;
     });
   };
-
-  /***********************
-   *   STEPS HANDLERS
-   **********************/
 
   const submit = () => {
     setForward(true);
@@ -85,16 +81,14 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     }
   };
 
-  /***********************/
-
-  /* Just a Function to count the options selected */
+  /*count the options selected */
   const countSelected = (values) => {
     const accum = values.filter((value) => value === true);
     console.log(accum.length);
     return accum.length;
   };
 
-  /* End Compile answers checker */
+  /* check answers at the end of compile */
   const manageCheckAnswers = () => {
     const tempAnswers = [...answers];
     console.log(answers);
@@ -211,9 +205,6 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     <>
       <QuestionnaireCompileHeader
         title={title}
-        /*cursor={current}
-        max={pages}
-        submit={finish}*/
       />
       {!finished ? (
         <>
@@ -248,7 +239,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
           />
         </>
       ) : (
-        <QuestionnaireCompileUsername
+        <QuestionnaireCompileName
           username={username}
           setUsername={setUsername}
           submit={submit}

@@ -3,13 +3,11 @@ import QuestionnaireResultPagination from "./QuestionnaireResultPagination";
 import QuestionnaireResultQuestion from "./QuestionnaireResultQuestion";
 import { Alert } from "react-bootstrap";
 import Spinner from "../../Spinner";
-//import { useEffect } from "react";
 
 export const QuestionnaireResultBody = ({ ...props }) => {
   const { loading, setCursor, questionnaire, pages, current, compile, error } = props;
 
   const next = () => {
-    //setLoading(true);
     if (current === pages) {
       setCursor(1);
     } else {
@@ -18,7 +16,6 @@ export const QuestionnaireResultBody = ({ ...props }) => {
   };
 
   const previous = () => {
-    //setLoading(true);
     if (current === 1) {
       setCursor(pages);
     } else {
@@ -27,7 +24,6 @@ export const QuestionnaireResultBody = ({ ...props }) => {
   };
 
   const select = (value) => {
-    //setLoading(true);
     setCursor(value);
   };
 

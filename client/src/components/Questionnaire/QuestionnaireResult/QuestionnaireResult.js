@@ -41,18 +41,6 @@ export const QuestionnaireResult = ({ ...props }) => {
     }
   }, [id]);
 
-  /* useEffect(() => {
-    if (id && questionnaire) {
-      //const tmpQuestionnaire = questionnaires.find((questionnaire) => questionnaire.id === parseInt(id));
-      const tmpCompiles = results.find(
-        (result) => result.id === parseInt(id)
-      ).compiles;
-      //setQuestionnaire(tmpQuestionnaire);
-      setCompiles(tmpCompiles);
-      setLoadQuestionnaire(false);
-    }
-  }, [id, questionnaire]); */
-
   return loadQuestionnaire ? (
     <Spinner />
   ) : error ? (<QuestionnaireCompileResult title={"Error!"} error={error} loading={loadQuestionnaire} />) : (

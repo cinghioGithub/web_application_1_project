@@ -5,11 +5,9 @@ import API from "../../API.js";
 import { Alert } from "react-bootstrap";
 
 export const QuestionnaireManage = ({ ...props }) => {
-  const { user, loading, setRefreshUser /*, setRefresh*/, myQuestionnaires, error, setError } = props;
-  //const [loading, setLoading] = useState(true);
+  const { user, loading, setRefreshUser, myQuestionnaires, error, setError } = props;
   const [loadDelete, setLoadDelete] = useState();
   const [deleted, setDeleted] = useState(false);
-  //const [error, setError] = useState();
 
   const deleteQuestionnaire = async (id) => {
     setLoadDelete(id);
@@ -19,10 +17,7 @@ export const QuestionnaireManage = ({ ...props }) => {
     } catch (err) {
       setError(err.error);
     }
-    //setLoadDelete();
     setDeleted(true);
-    //setRefreshUser(true);
-    //setRefresh(true);
   };
 
   useEffect(() => {
@@ -46,26 +41,6 @@ export const QuestionnaireManage = ({ ...props }) => {
     ));
 
     if(cards.error) setError(cards.error);
-
-  /* useEffect(() => {
-    async function getMyQuestionnaires() {
-      try {
-        const response = await API.getAdminQuestionnaires();
-        setMyQuestionnaires(response);
-      } catch (err) {
-        setError(err.error);
-        // da gestire
-      }
-    }
-    console.log(refreshUser);
-    if (refreshUser) {
-      getMyQuestionnaires();
-      setLoading(false);
-      setRefreshUser(false);
-    }
-  }, [refreshUser]); */
-
-  //console.log(loading);
 
   return (
     <>

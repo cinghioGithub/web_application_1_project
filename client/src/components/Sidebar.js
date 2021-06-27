@@ -18,7 +18,6 @@ export const Sidebar = ({ ...props }) => {
 
       <li className="nav-item active">
         <Link className="nav-link" to="/">
-          {/*<i className="fas fa-fw fa-tachometer-alt"></i>*/}
           <span className="ml-1">Questionnaires To Compile</span>
         </Link>
       </li>
@@ -29,7 +28,6 @@ export const Sidebar = ({ ...props }) => {
 
       <li className="nav-item">
         <Link className="nav-link" to="/manage">
-          {/*<i className="fas fa-fw fa-cog"></i>*/}
           <span className="ml-1">My Questionnaires</span>
         </Link>
       </li>

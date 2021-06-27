@@ -6,7 +6,7 @@ import { useRouteMatch } from "react-router-dom";
 import API from "../../../API.js";
 
 export const QuestionnaireCompile = ({ ...props }) => {
-  const { questionnaires, setRefresh /*, setQuestionnaires*/, isLogged, setRefreshUser } = props;
+  const { questionnaires, setRefresh, isLogged, setRefreshUser } = props;
   const [loadQuestionnaire, setLoadQuestionnaire] = useState(true);
   const [loadQuestion, setLoadQuestion] = useState(true);
   const [loadResult, setLoadResult] = useState(false);
@@ -70,7 +70,6 @@ export const QuestionnaireCompile = ({ ...props }) => {
       try {
         const result = await API.insertAnswer(parseInt(id), compile);
         if(result){
-          console.log("1");
           setLoadResult(false);
           setCompiled(true);
         }
@@ -90,23 +89,11 @@ export const QuestionnaireCompile = ({ ...props }) => {
       };
       console.log(compile);
       postCompile(compile);
-
-      //let obj = results.find((result) => result.id === questionnaire.id);
-      /* if (obj) {
-        obj.compiles.push(compiles);
-        questionnaire.compiled++;
-      } else {
-        results.push(
-          Object.assign({}, { id: questionnaire.id, compiles: [{ ...compiles }] })
-        );
-        questionnaire.compiled = 1;
-      } */
     }
   }, [forward, answers, id, username]);  //answers, id, username added to suppress warning
 
   useEffect(() => {
     if(compiled){
-      console.log("2");
       if(isLogged) setRefreshUser(true);
       else setRefresh(true);
       setCompiled(false);

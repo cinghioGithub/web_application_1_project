@@ -45,12 +45,9 @@ export const Main = ({ ...props }) => {
         setMyQuestionnaires(response);
       } catch (err) {
         setErrorAdmin(err.error);
-        //setMyQuestionnaires(err);
       }
       setLoadingMyQuestionnaire(false);
     }
-    //console.log(refreshUser);
-    //console.log(user);
     console.log("3");
     if (refreshUser && userIsAdmin) {
       getMyQuestionnaires();
@@ -70,10 +67,10 @@ export const Main = ({ ...props }) => {
     <div className="container-fluid" style={{ height: "100%" }}>
       <Switch>
         <Route path="/login">
-          {user ? <Redirect to="/" /> : <Login login={login} setRefreshUser={setRefreshUser}/>}
+          {user ? <Redirect to="/" /> : <Login login={login} setLoadingMyQuestionnaire={setLoadingMyQuestionnaire}/>}
         </Route>
         <Route path="/compile/:id">
-          <QuestionnaireCompile questionnaires={questionnaires} setRefresh={setRefresh} isLogged={isLogged} setRefreshUser={setRefreshUser}/*setQuestionnaires={setQuestionnaires}*/ />
+          <QuestionnaireCompile questionnaires={questionnaires} setRefresh={setRefresh} isLogged={isLogged} setRefreshUser={setRefreshUser}/>
         </Route>
         <Route path="/results/:id">
           {user ? <QuestionnaireResult user={user} /> : <Redirect to="/" />}

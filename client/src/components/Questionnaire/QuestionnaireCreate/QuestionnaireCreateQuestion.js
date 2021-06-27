@@ -28,7 +28,7 @@ export const QuestionnaireCreateQuestion = ({ ...props }) => {
                   rows="6"
                   maxLength={200}
                   disabled={true}
-                  placeholder="Insert here your answer"
+                  placeholder="Insert here the answer"
                 ></textarea>
               </div>
             </>

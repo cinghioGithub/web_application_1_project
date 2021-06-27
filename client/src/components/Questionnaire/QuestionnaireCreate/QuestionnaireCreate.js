@@ -2,7 +2,7 @@ import QuestionnaireCreateBody from "./QuestionnaireCreateBody";
 import QuestionnaireCreateResult from "./QuestionnaireCreateResult";
 import CreateQuestionModal from "./CreateQuestionModal";
 import { useEffect, useState } from "react";
-import EditTitle from "./EditTitle";
+//import EditTitle from "./EditTitle";
 import API from "../../../API.js";
 
 export const QuestionnaireCreate = ({ ...props }) => {

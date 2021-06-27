@@ -116,8 +116,8 @@ exports.getQuestionnaireById = (id) => {
             return {
               id: row.id,
               title: row.title,
-              compiled: row.num_submit,
-              admin: row.id_user,
+              /*compiled: row.num_submit,
+              admin: row.id_user,*/
               questions: [],
             };
           });

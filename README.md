@@ -22,9 +22,152 @@
   - No requested body
   - No response body
 - GET `/api/admin/questionnaires`
-  - Requested body: 
-  - Response body: 
-
+  - Request body: No request body. Information about user are taken from cookie
+  - Response body: A JSON object with the list of the authenticated user's questionnaires
+  ```
+  [{
+    id: <id>,
+    admin: <id_user>,
+    title: <questionnaire's title>,
+    compiled: <num of compiles>,
+    questions: [
+      { id: <id_question>, title: <title_question>, open: true, required: true },
+      {
+        id: <id_question>,
+        title: <id_question>,
+        open: false,
+        min: 1,
+        max: 1,
+        options: [
+          { id: <id_option>, value: <text_option> },
+          ...
+        ],
+      },
+      ...
+    ],
+  },
+  ...]
+  ```
+- GET `/api/questionnaires`
+  - Request body: No request body
+  - Response body: A JSON object with the list of all available questionnaires
+  ```
+  [{
+    id: <id>,
+    title: <questionnaire's title>,
+    questions: [
+      { id: <id_question>, title: <title_question>, open: true, required: true },
+      {
+        id: <id_question>,
+        title: <id_question>,
+        open: false,
+        min: 1,
+        max: 1,
+        options: [
+          { id: <id_option>, value: <text_option> },
+          ...
+        ],
+      },
+      ...
+    ],
+  },
+  ...]
+  ```
+- GET `/api/questionnaires?id=<id>`
+  - Request body: No request body
+  - Response body: A JSON object with the questionnaire with id=`<id>`
+  ```
+  {
+    id: <id>,
+    title: <questionnaire's title>,
+    questions: [
+      { id: <id_question>, title: <title_question>, open: true, required: true },
+      {
+        id: <id_question>,
+        title: <id_question>,
+        open: false,
+        min: 1,
+        max: 1,
+        options: [
+          { id: <id_option>, value: <text_option> },
+          ...
+        ],
+      },
+      ...
+    ],
+  }
+  ```
+- GET `/api/admin/answers?id=<id>`
+  - Request body: No request body
+  - Response body: A JSON object with all the answers to a specific questionnaire, which has id=`<id>`
+  ```
+  {
+    id: <id_questionnaire>,
+    compiles: [
+      {
+        username: <name>,
+        answers: [
+          { id: <id_question>, answer: <text_answer> },
+          { id: <id_question>, selection: <index_of_selection> },
+          { id: <id_question>, options: [false, true, false, false, true] },
+          ...
+        ],
+      },
+      ...
+    ]
+  }
+  ```
+- POST `/api/admin/questionnaires`
+  - Request body: A JSON object with the questionnaire created
+  ```
+  {
+    admin: <id_user>,
+    title: <questionnaire's title>,
+    compiled: 0,
+    questions: [
+      { id: <id_question>, title: <title_question>, open: true, required: true },
+      {
+        id: <id_question>,
+        title: <id_question>,
+        open: false,
+        min: 1,
+        max: 1,
+        options: [
+          { id: <id_option>, value: <text_option> },
+          ...
+        ],
+      },
+      ...
+    ],
+  }
+  ```
+  - Response body: A JSON object with the id of the created questionnaire
+  ```
+  { id_questionnaire: <id> }
+  ```
+- POST `/api/answers?id=<id>`
+  - Request body: A JSON object with answers for the questionnaire with id=`<id>`
+  ```
+  {
+    username: <name>,
+    answers: [
+      { id: <id_question>, answer: <text_answer> },
+      { id: <id_question>, selection: <index_of_selection> },
+      { id: <id_question>, options: [false, true, false, false, true] },
+      ...
+    ],
+  }
+  ```
+  - Response body: A JSON object with the id of the answers' questionnaire 
+  ```
+  { id_questionnaire: <id> }
+  ```
+- DELETE `/api/admin/questionnaires?id=<id>`
+  - Request body: No request body
+  - Response body: A JSON object with the id of the deleted questionnaire 
+  ```
+  { id_questionnaire: <id> }
+  ```
 ## Database Tables
 
 - Table `users` - contains id username hash name
@@ -34,8 +177,10 @@
 
 ## Main React Components
 
-- `ListOfSomething` (in `List.js`): component purpose and main functionality
-- `GreatButton` (in `GreatButton.js`): component purpose and main functionality
+- `Main` (in `Main.js`): component purpose and main functionality
+- `QuestionnaireCompile` (in `QuestionnaireCompile.js`): component purpose and main functionality
+- `QuestionnaireCreate` (in `QuestionnaireCreate.js`): component purpose and main functionality
+- `QuestionnaireResult` (in `QuestionnaireResult.js`): component purpose and main functionality
 - ...
 
 (only _main_ components, minor ones may be skipped)

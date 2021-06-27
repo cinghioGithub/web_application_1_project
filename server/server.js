@@ -94,9 +94,10 @@ app.get('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
     try{
       const result = await db.getQuestionnairesByUser(req.user.id);
       if (result.error) {
-        return res.status(404).json(result);   //TEST ERRORE, DA RIMETTERE 404
+        return res.status(404).json(result);
       } else{
-        return res.status(200).json(result);
+        setTimeout(() => res.status(200).json(result), 2000);
+        //return res.status(200).json(result);
       }      
     }
     catch(err){
@@ -117,7 +118,8 @@ app.get('/api/questionnaires', async (req, res) => {
       if (result.error) {
         return res.status(404).json(result);
       } else {
-        return res.status(200).json(result);
+        setTimeout(() => res.status(200).json(result), 2000);
+        //return res.status(200).json(result);
       }
     }
     catch (err) {
@@ -130,7 +132,8 @@ app.get('/api/questionnaires', async (req, res) => {
       if (result.error) {
         return res.status(404).json(result);
       } else {
-        return res.status(200).json(result);
+        setTimeout(() => res.status(200).json(result), 2000);
+        //return res.status(200).json(result);
       }
     }
     catch (err) {
@@ -154,7 +157,8 @@ app.get('/api/admin/answers', isLoggedIn, async (req, res) => {
             if (result.error) {
               return res.status(404).json(result);
             } else {
-              return res.status(200).json(result);
+              setTimeout(() => res.status(200).json(result), 2000);
+              //return res.status(200).json(result);
             }
           }
           catch(err){
@@ -215,7 +219,8 @@ app.post('/api/admin/questionnaires', [
     isAuthenticated = false;
     try{
       const result = await db.createQuestionnaire(req.body);
-      return res.status(200).json(result);
+      setTimeout(() => res.status(200).json(result), 2000);
+      //return res.status(200).json(result);
     }
     catch(err){
       console.log(err);
@@ -258,7 +263,8 @@ app.post('/api/answers', [
   try{
     if(req.query.id){
       const result = await db.createCompile(req.query.id, req.body);
-      return res.status(200).json(result);
+      setTimeout(() => res.status(200).json(result), 2000);
+      //return res.status(200).json(result);
     }
     else{
       return res.status(400).json({ error: "id NOT present in URL" });
@@ -279,7 +285,8 @@ app.delete('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
         const user = await db.getUserIdQuestionnaire(req.query.id);
         if(user.id_user === req.user.id){
           const result = await db.deleteQuestionnaire(req.query.id);
-          return res.status(200).json(result);
+          setTimeout(() => res.status(200).json(result), 2000);
+          //return res.status(200).json(result);
         }
         else{
           if(user.error){

@@ -1,8 +1,13 @@
 import { Button } from "../Button";
+import { useState } from "react";
 
 export const QuestionnaireCard = ({ ...props }) => {
   const { questionnaire, isAdmin, remove, loadingID } = props;
+  const [questionnaireDeleted, setQuestionnaireDeleted] = useState(false);
   
+  if(loadingID === questionnaire.id){
+    if(questionnaireDeleted === false) setQuestionnaireDeleted(true);
+  }
   /*className={`card border-bottom-${
           isAdmin ? "success" : "primary"
         } h-100 py-0`}*/
@@ -16,10 +21,10 @@ export const QuestionnaireCard = ({ ...props }) => {
           <div className="row no-gutters d-flex align-items-center justify-content-center mb-3">
             <div
               className={`h4 mb-0 font-weight-bold text-${
-                isAdmin ? "dark" : "dark"
+                isAdmin ? (questionnaireDeleted && !loadingID ? "danger" : "dark") : "dark" 
               } text-uppercase d-flex align-items-center`}
             >
-              {questionnaire.title}
+              {questionnaire.title + (questionnaireDeleted && !loadingID ? " (DELETED)": "")} 
             </div>
           </div>
           <div
@@ -42,7 +47,7 @@ export const QuestionnaireCard = ({ ...props }) => {
                   </div>
                 </div>
                 <div className="h5 mb-0 font-weight-bold text-gray-800">
-                  <Button type={"danger"} text={"Delete"} onClick={() => remove(questionnaire.id)} loading={loadingID === questionnaire.id} />
+                  <Button type={"danger"} text={"Delete"} onClick={() => remove(questionnaire.id)} loading={loadingID === questionnaire.id}  disabled={questionnaireDeleted && !loadingID}/>
                 </div>
               </>
             )}
@@ -51,7 +56,7 @@ export const QuestionnaireCard = ({ ...props }) => {
                 type={"primary"}
                 text={isAdmin ? "Results" : "Compile"}
                 url={`${isAdmin ? "/results/" : "/compile/"}${questionnaire.id}`}
-                disabled={isAdmin && !questionnaire.compiled}
+                disabled={(isAdmin && !questionnaire.compiled) || (questionnaireDeleted && !loadingID)}
               />
             </div>
           </div>

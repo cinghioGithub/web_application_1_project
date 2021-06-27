@@ -5,20 +5,21 @@ import API from "../../API.js";
 import { Alert } from "react-bootstrap";
 
 export const QuestionnaireManage = ({ ...props }) => {
-  const { user, loading, setRefreshUser, setRefresh, myQuestionnaires } = props;
+  const { user, loading, setRefreshUser /*, setRefresh*/, myQuestionnaires, error, setError } = props;
   //const [loading, setLoading] = useState(true);
   const [loadDelete, setLoadDelete] = useState();
   const [deleted, setDeleted] = useState(false);
-  const [error, setError] = useState();
+  //const [error, setError] = useState();
 
   const deleteQuestionnaire = async (id) => {
     setLoadDelete(id);
     try {
       await API.deleteQuestionnaire(id);
+      setLoadDelete();
     } catch (err) {
       setError(err.error);
     }
-    setLoadDelete();
+    //setLoadDelete();
     setDeleted(true);
     //setRefreshUser(true);
     //setRefresh(true);
@@ -64,7 +65,7 @@ export const QuestionnaireManage = ({ ...props }) => {
     }
   }, [refreshUser]); */
 
-  console.log(loading);
+  //console.log(loading);
 
   return (
     <>

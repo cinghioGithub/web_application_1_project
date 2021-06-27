@@ -4,7 +4,7 @@ import Logo from "./../img/logo.png";
 import API from "../API";
 
 export function Login({ ...props }) {
-  const { login, setRefreshUser } = props;
+  const { login /*, setRefreshUser*/ } = props;
   const [email, setEmail] = useState("admin1@test.it");
   const [password, setPassword] = useState("password");
   const [error, setError] = useState("");

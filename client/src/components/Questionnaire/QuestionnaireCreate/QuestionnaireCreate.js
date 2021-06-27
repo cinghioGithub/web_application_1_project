@@ -1,12 +1,12 @@
 import QuestionnaireCreateBody from "./QuestionnaireCreateBody";
 import QuestionnaireCreateResult from "./QuestionnaireCreateResult";
-import CreateQuestion from "./CreateQuestion";
+import CreateQuestionModal from "./CreateQuestionModal";
 import { useEffect, useState } from "react";
 import EditTitle from "./EditTitle";
 import API from "../../../API.js";
 
 export const QuestionnaireCreate = ({ ...props }) => {
-  const { user, setRefreshUser, setRefresh } = props;
+  const { user, setRefreshUser/*, setRefresh*/, setLoadingMyQuestionnaire } = props;
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState("");
@@ -15,7 +15,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
   const [create, setCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [showAddQuestion, setShowAddQuestion] = useState(false);
-  const [showEditTitle, setShowEditTitle] = useState(false);
+  //const [showEditTitle, setShowEditTitle] = useState(false);
 
   const handleCloseAddQuestion = () => {
     setShowAddQuestion(false);
@@ -25,13 +25,13 @@ export const QuestionnaireCreate = ({ ...props }) => {
     setShowAddQuestion(true);
   };
 
-  const handleCloseEditTitle = () => {
+  /*const handleCloseEditTitle = () => {
     setShowEditTitle(false);
   };
 
   const handleShowEditTitle = () => {
     setShowEditTitle(true);
-  };
+  };*/
 
   const handleSetQuestion = (question) => {
     setQuestions((questions) => {
@@ -54,6 +54,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
       console.log(questionnaire);
       try{
         const response = await API.insertQuestionnaire(questionnaire);
+        setLoading(false);
         //setRefresh(true);
       }
       catch(err){
@@ -66,13 +67,14 @@ export const QuestionnaireCreate = ({ ...props }) => {
     if (create) {
       setLoading(true);
       submitQuestionnaire();
-      setLoading(false);
+      //setLoading(false);
     }
   }, [create]);
 
   useEffect(() => {
     if(created){
       setRefreshUser(true);
+      setLoadingMyQuestionnaire(true);
       setCreated(false);
     }
   }, [created]);
@@ -92,20 +94,20 @@ export const QuestionnaireCreate = ({ ...props }) => {
         setStart={setStart}
         setCreate={setCreate}
         showAddQuestion={handleShowAddQuestion}
-        showEditTitle={handleShowEditTitle}
+        /*showEditTitle={handleShowEditTitle}*/
       />
-      <CreateQuestion
+      <CreateQuestionModal
         show={showAddQuestion}
         onHide={handleCloseAddQuestion}
         newQuestionId={questions.length + 1}
         handleSetQuestion={handleSetQuestion}
       />
-      <EditTitle
+      {/*<EditTitle
         show={showEditTitle}
         onHide={handleCloseEditTitle}
         title={title}
         setTitle={setTitle}
-      />
+      />*/}
     </>
   );
 };

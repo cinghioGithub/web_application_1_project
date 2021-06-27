@@ -35,7 +35,7 @@ const QuestionnaireCompileResult = ({ ...props }) => {
               </>
             )}
             <div className="d-flex justify-content-center align-items-center">
-              <Button text={"Go Home"} type={"success"} url={"/"} />
+              <Button text={"Go Home"} type={"success"} url={"/"} disabled={loading}/>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
     start,
     setStart,
     showAddQuestion,
-    showEditTitle,
+    /*showEditTitle,*/
   } = props;
 
   const moveUp = (id) => {
@@ -70,19 +70,19 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
         <>
           <QuestionnaireCreateHeader
             title={title}
-            editTitle={showEditTitle}
-            addQuestion={showAddQuestion}
+            /*editTitle={showEditTitle}
+            addQuestion={showAddQuestion}*/
             numQuestions={questions.length}
             submit={() => setCreate(true)}
           />
           <div className="row">{loading ? <Spinner /> : questions_}</div>
-          {/*<div className="row d-flex justify-content-center align-items-center">
+          <div className="row d-flex justify-content-center align-items-center">
             <Button
               text={"Add New Question"}
               type={"primary"}
               onClick={showAddQuestion}
             />
-      </div>*/}
+      </div>
         </>
       ) : (
         <QuestionnaireCreateAddTitle

@@ -44,7 +44,7 @@ export const Main = ({ ...props }) => {
         const response = await API.getAdminQuestionnaires();
         setMyQuestionnaires(response);
       } catch (err) {
-        setError(err.error);
+        setErrorAdmin(err.error);
         //setMyQuestionnaires(err);
       }
       setLoadingMyQuestionnaire(false);
@@ -86,6 +86,8 @@ export const Main = ({ ...props }) => {
               user={user}
               setRefreshUser={setRefreshUser}
               setRefresh={setRefresh}
+              error={errorAdmin}
+              setError={setErrorAdmin}
             />
           ) : (
             <Redirect to="/" />
@@ -96,6 +98,7 @@ export const Main = ({ ...props }) => {
             <QuestionnaireCreate
               user={user}
               setRefreshUser={setRefreshUser}
+              setLoadingMyQuestionnaire={setLoadingMyQuestionnaire}
             />
           ) : (
             <Redirect to="/" />

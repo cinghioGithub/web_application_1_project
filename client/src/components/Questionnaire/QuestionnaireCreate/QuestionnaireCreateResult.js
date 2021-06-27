@@ -35,7 +35,7 @@ const QuestionnaireCreateResult = ({ ...props }) => {
               </>
             )}
             <div className="d-flex justify-content-center align-items-center">
-              <Button text={"Go Manage"} type={"success"} url={"/manage"} />
+              <Button text={"Go Manage"} type={"success"} url={"/manage"} disabled={loading}/>
             </div>
           </div>
         </div>

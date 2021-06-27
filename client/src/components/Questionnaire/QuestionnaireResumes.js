@@ -1,4 +1,5 @@
 import QuestionnaireCard from "./QuestionnaireCard";
+import Spinner from "../Spinner";
 import { Alert } from "react-bootstrap";
 
 export const QuestionnaireResumes = ({ ...props }) => {
@@ -15,7 +16,7 @@ export const QuestionnaireResumes = ({ ...props }) => {
       </div>
       <div className="row">
         {loading ? (
-          ""
+          <Spinner/>
         ) : error ? (
           <Alert variant={"danger"}>{error}</Alert>
         ) : (

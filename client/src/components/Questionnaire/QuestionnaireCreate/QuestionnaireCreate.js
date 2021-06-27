@@ -69,7 +69,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
       submitQuestionnaire();
       //setLoading(false);
     }
-  }, [create]);
+  }, [create, questions, title, user.id]); //questions, title, user.id added to suppress warning
 
   useEffect(() => {
     if(created){
@@ -77,7 +77,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
       setLoadingMyQuestionnaire(true);
       setCreated(false);
     }
-  }, [created]);
+  }, [created, setLoadingMyQuestionnaire, setRefreshUser]); //setLoadingMyQuestionnaire, setRefreshUser added to suppress warning
 
   return create ? (
     <QuestionnaireCreateResult loading={loading} title={title} error={error} />

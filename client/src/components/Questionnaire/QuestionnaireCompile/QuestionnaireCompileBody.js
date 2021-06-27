@@ -95,7 +95,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
   };
 
   /* End Compile answers checker */
-  const handleCheckAnswers = () => {
+  const manageCheckAnswers = () => {
     const tempAnswers = [...answers];
     console.log(answers);
     console.log(tempAnswers);
@@ -186,12 +186,12 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
         setSelection();
       }
     }
-  }, [loading]);
+  }, [loading, answers, question.id]);   //answers, question.id added to supress warning
 
   /* End Compile Handler */
   useEffect(() => {
     if (endCompile) {
-      const errorsID = handleCheckAnswers();
+      const errorsID = manageCheckAnswers();
       console.log(errorsID);
       if (errorsID.length !== 0) {
         setError(

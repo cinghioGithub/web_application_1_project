@@ -1,4 +1,4 @@
-import QuestionnaireCard from "./QuestionnaireCard";
+import QuestionnaireBox from "./QuestionnaireBox";
 import { useState, useEffect } from "react";
 import Spinner from "../Spinner";
 import API from "../../API.js";
@@ -30,12 +30,12 @@ export const QuestionnaireManage = ({ ...props }) => {
       setRefreshUser(true);
       setDeleted(false);
     }
-  }, [deleted]);
+  }, [deleted, setRefreshUser]);  //setRefreshUser added to suppress warning
 
   const cards = myQuestionnaires.error ? {error: myQuestionnaires.error} : myQuestionnaires
     .filter((questionnaire) => user.id === questionnaire.admin)
     .map((questionnaire, index) => (
-      <QuestionnaireCard
+      <QuestionnaireBox
         remove={deleteQuestionnaire}
         loadingID={loadDelete}
         key={index}

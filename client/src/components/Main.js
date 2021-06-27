@@ -1,5 +1,5 @@
 import QuestionnaireCompile from "./Questionnaire/QuestionnaireCompile/QuestionnaireCompile";
-import QuestionnaireResumes from "./Questionnaire/QuestionnaireResumes";
+import Questionnaires from "./Questionnaire/Questionnaires";
 import QuestionnaireManage from "./Questionnaire/QuestionnaireManage";
 import QuestionnaireResult from "./Questionnaire/QuestionnaireResult/QuestionnaireResult";
 import QuestionnaireCreate from "./Questionnaire/QuestionnaireCreate/QuestionnaireCreate";
@@ -36,7 +36,7 @@ export const Main = ({ ...props }) => {
       getQuestionnaires();
       setRefresh(false);
     }
-  }, [refresh]);
+  }/*, [refresh]*/);
 
   useEffect(() => {
     async function getMyQuestionnaires() {
@@ -57,7 +57,7 @@ export const Main = ({ ...props }) => {
       setRefreshUser(false);
       setRefresh(true);
     }
-  },[refreshUser, userIsAdmin]);
+  }/*,[refreshUser, userIsAdmin]*/);
 
   useEffect(() => {
     if(isLogged){
@@ -105,7 +105,7 @@ export const Main = ({ ...props }) => {
           )}
         </Route>
         <Route path="/">
-          <QuestionnaireResumes questionnaires={questionnaires} loading={loadingQuestionnaire} error={error} />
+          <Questionnaires questionnaires={questionnaires} loading={loadingQuestionnaire} error={error} />
         </Route>
       </Switch>
     </div>

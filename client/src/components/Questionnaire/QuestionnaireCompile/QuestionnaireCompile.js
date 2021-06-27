@@ -63,7 +63,7 @@ export const QuestionnaireCompile = ({ ...props }) => {
         //TODO SURVEY NOT FOUND
       }
     }
-  }, [id]);
+  }, [id, questionnaire, questionnaires]); //questionnaire, questionnaires added to suppress warning
 
   useEffect(() => {
     async function postCompile(compile) {
@@ -102,7 +102,7 @@ export const QuestionnaireCompile = ({ ...props }) => {
         questionnaire.compiled = 1;
       } */
     }
-  }, [forward]);
+  }, [forward, answers, id, username]);  //answers, id, username added to suppress warning
 
   useEffect(() => {
     if(compiled){
@@ -111,7 +111,7 @@ export const QuestionnaireCompile = ({ ...props }) => {
       else setRefresh(true);
       setCompiled(false);
     }
-  }, [compiled]);
+  }, [compiled, isLogged, setRefresh, setRefreshUser]);   //isLogged, setRefresh, setRefreshUser added to suppress warning
 
   return (
     <>

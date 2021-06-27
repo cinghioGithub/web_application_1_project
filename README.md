@@ -177,10 +177,13 @@
 
 ## Main React Components
 
-- `Main` (in `Main.js`): component purpose and main functionality
-- `QuestionnaireCompile` (in `QuestionnaireCompile.js`): component purpose and main functionality
-- `QuestionnaireCreate` (in `QuestionnaireCreate.js`): component purpose and main functionality
-- `QuestionnaireResult` (in `QuestionnaireResult.js`): component purpose and main functionality
+- `Main` (in `Main.js`): manage all routes of the application. Logged user will be able to perform different action. Not logged user will only be able to compile questionnaires. It performs download of questionnaires.
+- `QuestionnaireCompile` (in `QuestionnaireCompile.js`): permits to a user to compile a questionnaire and save it. It retrive from server the questionnaire to compile.
+- `QuestionnaireCreate` (in `QuestionnaireCreate.js`): permits to an admin to create a new questionnaire and save it.
+- `QuestionnaireBox` (in `QuestionnaireBox.js`): for questionnaires to comile show a button in order to compile the questionnaire. For admin's questionnaire show buttons to manage it and the number of compiles.
+- `QuestionnaireResult` (in `QuestionnaireResult.js`): show to an admin result for a single questionnaire. Show all the compiles.
+- `Questionnaires` (in `Questionnaires.js`): show all the available questionnaire to compile.
+- `QuestionnaireManage` (in `QuestionnaireManage.js`): show all admin's questionnaires. It manage the delete of a questionnaire.
 - ...
 
 (only _main_ components, minor ones may be skipped)

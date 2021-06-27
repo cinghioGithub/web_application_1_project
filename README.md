@@ -7,23 +7,32 @@
 - Route `/login`: show the login form for authentication
 - Route `/manage`: show user's questionnaires and permits to delete them or see results of them
 - Route `/create`: permits to create a questionnaire
-- Route `/compile/:id`: show question list of a questionnaire and permits to submit a compile. <id> is the questionnaire's id 
-- Route `/result/:id`: show a results for a specific questionnaire. <id> is the questionnaire's id
+- Route `/compile/:id`: show question list of a questionnaire and permits to submit a compile. `<id>` is the questionnaire's id 
+- Route `/results/:id`: show a results for a specific questionnaire. `<id>` is the questionnaire's id
 
 ## API Server
 
 - POST `/api/sessions`
-  - request body content: `{username:<username>, password:<password>}`
-  - response body content: `{id: <id>, username:<username>, name:<name>}`
+  - Request body content: A JSON object with username and password of the admin
+  ```
+  {username:<username>, password:<password>}
+  ```
+  - Response body content: A JSON object with information about the admin
+  ```
+  {id: <id>, username:<username>, name:<name>}
+  ```
 - GET `/api/sessions/current`
-  - No requested body. Check is performed with cookie
-  - response body content: `{id: <id>, username:<username>, name:<name>}`
+  - Request body content: No requested body. Check is performed with cookie
+  - Response body content: A JSON object with information about the admin
+  ```
+  {id: <id>, username:<username>, name:<name>}
+  ```
 - DELETE `/api/sessions/current`
-  - No requested body
-  - No response body
+  - Request body content: No requested body
+  - Response body content: No response body
 - GET `/api/admin/questionnaires`
-  - Request body: No request body. Information about user are taken from cookie
-  - Response body: A JSON object with the list of the authenticated user's questionnaires
+  - Request body content: No request body. Information about user are taken from cookie
+  - Response body content: A JSON object with the list of the authenticated user's questionnaires
   ```
   [{
     id: <id>,
@@ -49,8 +58,8 @@
   ...]
   ```
 - GET `/api/questionnaires`
-  - Request body: No request body
-  - Response body: A JSON object with the list of all available questionnaires
+  - Request body content: No request body
+  - Response body content: A JSON object with the list of all available questionnaires
   ```
   [{
     id: <id>,
@@ -74,8 +83,8 @@
   ...]
   ```
 - GET `/api/questionnaires?id=<id>`
-  - Request body: No request body
-  - Response body: A JSON object with the questionnaire with id=`<id>`
+  - Request body content: No request body
+  - Response body content: A JSON object with the questionnaire with id=`<id>`
   ```
   {
     id: <id>,
@@ -98,8 +107,8 @@
   }
   ```
 - GET `/api/admin/answers?id=<id>`
-  - Request body: No request body
-  - Response body: A JSON object with all the answers to a specific questionnaire, which has id=`<id>`
+  - Request body content: No request body
+  - Response body content: A JSON object with all the answers to a specific questionnaire, which has id=`<id>`
   ```
   {
     id: <id_questionnaire>,
@@ -118,7 +127,7 @@
   }
   ```
 - POST `/api/admin/questionnaires`
-  - Request body: A JSON object with the questionnaire created
+  - Request body content: A JSON object with the questionnaire created
   ```
   {
     admin: <id_user>,
@@ -141,12 +150,12 @@
     ],
   }
   ```
-  - Response body: A JSON object with the id of the created questionnaire
+  - Response body content: A JSON object with the id of the created questionnaire
   ```
   { id_questionnaire: <id> }
   ```
 - POST `/api/answers?id=<id>`
-  - Request body: A JSON object with answers for the questionnaire with id=`<id>`
+  - Request body content: A JSON object with answers for the questionnaire with id=`<id>`
   ```
   {
     username: <name>,
@@ -158,22 +167,22 @@
     ],
   }
   ```
-  - Response body: A JSON object with the id of the answers' questionnaire 
+  - Response body content: A JSON object with the id of the answers' questionnaire 
   ```
   { id_questionnaire: <id> }
   ```
 - DELETE `/api/admin/questionnaires?id=<id>`
-  - Request body: No request body
-  - Response body: A JSON object with the id of the deleted questionnaire 
+  - Request body content: No request body
+  - Response body content: A JSON object with the id of the deleted questionnaire 
   ```
   { id_questionnaire: <id> }
   ```
 ## Database Tables
 
-- Table `users` - contains id username hash name
-- Table `questionnaires` - contains id title id_user num_submit
-- Table `questions` - contains id id_questionnaire open question answer_1 answer_2 answer_3 answer_4 answer_5 answer_6 answer_7 answer_8 answer_9 answer_10 min max
-- Table `answers` - contains id_compile id_questionnaire id_question answer option name open selection
+- Table `users` - contains: id username hash name
+- Table `questionnaires` - contains: id title id_user num_submit
+- Table `questions` - contains: id id_questionnaire open question answer_1 answer_2 answer_3 answer_4 answer_5 answer_6 answer_7 answer_8 answer_9 answer_10 min max
+- Table `answers` - contains: id_compile id_questionnaire id_question answer option name open selection
 
 ## Main React Components
 
@@ -184,15 +193,13 @@
 - `QuestionnaireResult` (in `QuestionnaireResult.js`): show to an admin result for a single questionnaire. Show all the compiles.
 - `Questionnaires` (in `Questionnaires.js`): show all the available questionnaire to compile.
 - `QuestionnaireManage` (in `QuestionnaireManage.js`): show all admin's questionnaires. It manage the delete of a questionnaire.
-- ...
+- `Login` (in `Login.js`): show a form for the authentication of an admin.
 
-(only _main_ components, minor ones may be skipped)
 
 ## Screenshot
 
-![Screenshot](./img/screenshot.jpg)
+![Screenshot](./img/screenshot.png)
 
 ## Users Credentials
-
-- admin1@test.it, password (plus any other requested info)
-- admin2@test.it, password (plus any other requested info)
+- admin1@test.it, password
+- admin2@test.it, password

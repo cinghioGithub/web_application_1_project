@@ -10,7 +10,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState("");
-  const [start, setStart] = useState(false);
+  //const [start, setStart] = useState(false);
   const [error, setError] = useState("");
   const [create, setCreate] = useState(false);
   const [created, setCreated] = useState(false);
@@ -80,7 +80,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
   }, [created, setLoadingMyQuestionnaire, setRefreshUser]); //setLoadingMyQuestionnaire, setRefreshUser added to suppress warning
 
   return create ? (
-    <QuestionnaireCreateResult loading={loading} title={title} error={error} />
+    <QuestionnaireCreateResult loading={loading} title={title} error={error} setRefreshUser={setRefreshUser}/>
   ) : (
     <>
       <QuestionnaireCreateBody
@@ -90,8 +90,8 @@ export const QuestionnaireCreate = ({ ...props }) => {
         setQuestions={setQuestions}
         title={title}
         setTitle={setTitle}
-        start={start}
-        setStart={setStart}
+        /*start={start}
+        setStart={setStart}*/
         setCreate={setCreate}
         showAddQuestion={handleShowAddQuestion}
         /*showEditTitle={handleShowEditTitle}*/

@@ -159,7 +159,7 @@ export function CreateQuestionModal({ ...props }) {
         >
           <Form.Group>
             <Form.Label>
-              Title <span className="text-danger">*Required</span>
+              Title <span className="text-danger">*Mandatory</span>
             </Form.Label>
             <Form.Control
               required
@@ -184,10 +184,10 @@ export function CreateQuestionModal({ ...props }) {
                 <Form.Check
                   custom
                   type="checkbox"
-                  id="formOpen"
-                  label="Open Question"
-                  onChange={handleOpen}
-                  checked={open}/>
+                  id="formRequired"
+                  label="Mandatory"
+                  onChange={handleRequired}
+                  checked={required}/>
               </Form.Group>
               <Form.Group
                 as={Col}
@@ -196,27 +196,15 @@ export function CreateQuestionModal({ ...props }) {
                 <Form.Check
                   custom
                   type="checkbox"
-                  id="formRequired"
-                  label="Mandatory"
-                  onChange={handleRequired}
-                  checked={required}/>
+                  id="formOpen"
+                  label="Open Question"
+                  onChange={handleOpen}
+                  checked={open}/>
               </Form.Group>
             </Form.Row>
           ) : (
             <>
               <Form.Row>
-                <Form.Group
-                  as={Col}
-                  md="4"
-                  className="d-flex align-items-center justify-content-center">
-                  <Form.Check
-                    custom
-                    type="checkbox"
-                    id="formOpen"
-                    label="Open Question"
-                    onChange={handleOpen}
-                    checked={open}/>
-                </Form.Group>
                 <Form.Group
                   as={Col}
                   md="4"
@@ -252,13 +240,19 @@ export function CreateQuestionModal({ ...props }) {
                     Max is greater than options available
                   </Form.Control.Feedback>
                 </Form.Group>
+                <Form.Group
+                  as={Col}
+                  md="4"
+                  className="d-flex align-items-center justify-content-center">
+                  <Form.Check
+                    custom
+                    type="checkbox"
+                    id="formOpen"
+                    label="Open Question"
+                    onChange={handleOpen}
+                    checked={open}/>
+                </Form.Group>
               </Form.Row>
-              {options.length !== 0 && (
-                <>
-                  <hr className="mt-0" />
-                  {displayOptions}
-                </>
-              )}
               {!(options.length === 10) && (
                 <>
                   <hr className="mt-0" />
@@ -278,6 +272,12 @@ export function CreateQuestionModal({ ...props }) {
                         disabled={!optionTitle}/>
                     </Form.Group>
                   </Form.Row>
+                </>
+              )}
+              {options.length !== 0 && (
+                <>
+                  <hr className="mt-0" />
+                  {displayOptions}
                 </>
               )}
             </>

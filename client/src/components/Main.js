@@ -36,7 +36,7 @@ export const Main = ({ ...props }) => {
       getQuestionnaires();
       setRefresh(false);
     }
-  }/*, [refresh]*/);
+  }, [refresh]);
 
   useEffect(() => {
     async function getMyQuestionnaires() {
@@ -57,7 +57,7 @@ export const Main = ({ ...props }) => {
       setRefreshUser(false);
       setRefresh(true);
     }
-  }/*,[refreshUser, userIsAdmin]*/);
+  }, [refreshUser, userIsAdmin]);
 
   useEffect(() => {
     if(isLogged){

@@ -1,8 +1,8 @@
-import Button from "../../Button";
+import { Link } from "react-router-dom";
 import Spinner from "../../Spinner";
 
 const QuestionnaireCreateResult = ({ ...props }) => {
-  const { title, loading, error } = props;
+  const { title, loading, error, setRefreshUser } = props;
   return (
     <div className="row">
       <div className="col-10 offset-1 mb-1">
@@ -35,7 +35,11 @@ const QuestionnaireCreateResult = ({ ...props }) => {
               </>
             )}
             <div className="d-flex justify-content-center align-items-center">
-              <Button text={"Go Manage"} type={"success"} url={"/manage"} disabled={loading}/>
+              <Link to="/manage">
+                <button className={`btn btn-success mx-1`} disabled={loading} onClick={() => setRefreshUser(true)}>
+                  <span className="text">Go Manage</span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

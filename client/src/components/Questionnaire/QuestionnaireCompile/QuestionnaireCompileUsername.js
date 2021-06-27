@@ -20,7 +20,7 @@ export const QuestionnaireCompileUsername = ({ ...props }) => {
                 htmlFor="username"
                 className="col-2 offset-2 d-flex justify-content-center align-items-center mb-0 text-lg text-primary"
               >
-                Username
+               Name
               </label>
               <input
                 type="text"

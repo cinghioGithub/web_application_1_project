@@ -5,12 +5,12 @@ const morgan = require("morgan"); //logging middleware
 const passport = require("passport"); // middleware
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
-const { check, param, body, validationResult } = require("express-validator"); // validation middleware
+const { body, validationResult } = require("express-validator"); // validation middleware
 
 const db = require("./db.js");
 const users = require("./users.js");
 
-let isAuthenticated = false;
+//let isAuthenticated = false;
 /***********************************
  * SERVER CONFIGURATION
 ***********************************/
@@ -71,11 +71,11 @@ app.use(
 // MIDDLEWARES CUSTOM
 const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()){
-    isAuthenticated = true;
+    //isAuthenticated = true;
     return next();
   }
-  return next();
-  //return res.status(401).json({ error: "Not Authenticated" });
+  //return next();
+  return res.status(401).json({ error: "Not Authenticated" });
 };
 
 // PASSPORT INITIALIZAZION
@@ -89,8 +89,8 @@ app.use(passport.session());
  /* Retrive questionnaires of a user (if authenticated)*/
 app.get('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
   /* retrive user's questionnaires if authenticated */
-  if(isAuthenticated === true){
-    isAuthenticated = false;
+  // if(isAuthenticated === true){
+  //   isAuthenticated = false;
     try{
       const result = await db.getQuestionnairesByUser(req.user.id);
       if (result.error) {
@@ -103,10 +103,10 @@ app.get('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
     catch(err){
       return res.status(500).json({ error: "500 - Internal Server Error" });
     }
-  }
-  else{
-    return res.status(401).json({ error: "Not Authenticated" });
-  }
+  // }
+  // else{
+  //   return res.status(401).json({ error: "Not Authenticated" });
+  // }
 });
 
  /* Retrive questionnaires of all users */
@@ -145,8 +145,8 @@ app.get('/api/questionnaires', async (req, res) => {
 
 /* retrive answer for a specific questionnaire */
 app.get('/api/admin/answers', isLoggedIn, async (req, res) => {
-  if(isAuthenticated === true){
-    isAuthenticated = false;
+  // if(isAuthenticated === true){
+  //   isAuthenticated = false;
     if(req.query.id){
       try{
         const user = await db.getUserIdQuestionnaire(req.query.id);
@@ -176,10 +176,10 @@ app.get('/api/admin/answers', isLoggedIn, async (req, res) => {
     else{
       return res.status(400).json({ error: "id NOT present in URL" });
     }
-  }
-  else{
-    return res.status(401).json({ error: "Not Authenticated" });
-  }
+  // }
+  // else{
+  //   return res.status(401).json({ error: "Not Authenticated" });
+  // }
 });
 
 /* POST a new questionnaire */
@@ -215,8 +215,8 @@ app.post('/api/admin/questionnaires', [
   if (!errors.isEmpty()) {
     throw res.status(422).json({ error: errors.array() });
   }
-  if(isAuthenticated === true){
-    isAuthenticated = false;
+  // if(isAuthenticated === true){
+  //   isAuthenticated = false;
     try{
       const result = await db.createQuestionnaire(req.body);
       setTimeout(() => res.status(200).json(result), 2000);
@@ -226,10 +226,10 @@ app.post('/api/admin/questionnaires', [
       console.log(err);
       return res.status(500).json({ error: "500 - Internal Server Error" });
     }
-  }
-  else{
-    return res.status(401).json({ error: "Not Authenticated" });
-  }
+  // }
+  // else{
+  //   return res.status(401).json({ error: "Not Authenticated" });
+  // }
 });
 
 /* POST a new compile */
@@ -278,8 +278,8 @@ app.post('/api/answers', [
 
 /* DELETE a questionnaire */
 app.delete('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
-  if(isAuthenticated === true){
-    isAuthenticated = false;
+  // if(isAuthenticated === true){
+  //   isAuthenticated = false;
     if(req.query.id){
       try{
         const user = await db.getUserIdQuestionnaire(req.query.id);
@@ -304,10 +304,10 @@ app.delete('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
     else{
       return res.status(400).json({ error: "id NOT present in URL" });
     }
-  }
-  else{
-    return res.status(401).json({ error: "Not Authenticated" });
-  }
+  // }
+  // else{
+  //   return res.status(401).json({ error: "Not Authenticated" });
+  // }
 });
 
 /***********************************
@@ -335,7 +335,7 @@ app.post('/api/sessions', function (req, res, next) {
       //console.log("AUTHENTICATE SESSION SERVER API [LOGIN]");
       // req.user contains the authenticated user, we send all the user info back
       // this is coming from db.getUser()
-      return res.json(req.user);
+      return setTimeout(() => res.json(req.user), 2000); //res.json(req.user);
     });
   })(req, res, next);
 });
@@ -355,7 +355,8 @@ app.get("/api/sessions/current", (req, res) => {
   console.log("CHECKSESSION SERVER API [START]");
   if (req.isAuthenticated()) {
     console.log("CHECKSESSION SERVER API [OK]: ", req.user);
-    return res.status(200).json(req.user);
+    setTimeout(() => res.status(200).json(req.user), 2000);
+    //return res.status(200).json(req.user);
   } else {
     const error = {error: "Unauthenticated user!"}
     console.log('CHECKSESSION SERVER API [ERROR]: ', error.error);

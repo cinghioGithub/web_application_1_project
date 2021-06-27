@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import Logo from "./../img/logo.png";
 import API from "../API";
 
@@ -8,6 +9,7 @@ export function Login({ ...props }) {
   const [email, setEmail] = useState("admin1@test.it");
   const [password, setPassword] = useState("password");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -56,8 +58,9 @@ export function Login({ ...props }) {
             size="lg"
             className="btn-block"
             type="submit"
-          >
-            Sign in
+            onClick={() => setLoading(true)}
+            disabled={loading}
+          > {loading && <Spinner animation="border" size="sm" />}Sign in
           </Button>
         </Form>
         {/*<Row className="justify-content-center align-items-center mìvh-100">

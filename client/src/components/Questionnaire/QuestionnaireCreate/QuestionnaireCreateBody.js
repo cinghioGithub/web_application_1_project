@@ -1,6 +1,6 @@
 import QuestionnaireCreateHeader from "./QuestionnaireCreateHeader";
 import QuestionnaireCreateQuestion from "./QuestionnaireCreateQuestion";
-import QuestionnaireCreateAddTitle from "./QuestionnaireCreateAddTitle";
+//import QuestionnaireCreateAddTitle from "./QuestionnaireCreateAddTitle";
 import Button from "../../Button";
 import Spinner from "../../Spinner";
 
@@ -13,8 +13,8 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
     title,
     setTitle,
     setCreate,
-    start,
-    setStart,
+    /*start,
+    setStart,*/
     showAddQuestion,
     /*showEditTitle,*/
   } = props;
@@ -47,7 +47,16 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
   };
 
   const removeQuestion = (id) => {
-    setQuestions(questions => questions.filter(question => question.id !== id));
+    setQuestions(questions => {
+      let tmp = questions.filter(question => question.id !== id);
+      tmp = tmp.map( val => {
+        if(val.id > id)
+          return Object.assign({}, val, { id: val.id-1});
+        else
+          return val;
+      });
+      return tmp;
+    });
   };
 
   const questions_ = questions.map((question) => (
@@ -66,31 +75,22 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Create Questionnaire</h1>
       </div>
-      {start ? (
-        <>
-          <QuestionnaireCreateHeader
-            title={title}
-            /*editTitle={showEditTitle}
-            addQuestion={showAddQuestion}*/
-            numQuestions={questions.length}
-            submit={() => setCreate(true)}
-          />
-          <div className="row">{loading ? <Spinner /> : questions_}</div>
-          <div className="row d-flex justify-content-center align-items-center">
-            <Button
-              text={"Add New Question"}
-              type={"primary"}
-              onClick={showAddQuestion}
-            />
-      </div>
-        </>
-      ) : (
-        <QuestionnaireCreateAddTitle
-          title={title}
-          setTitle={setTitle}
-          submit={setStart}
+      <QuestionnaireCreateHeader
+        title={title}
+        /*editTitle={showEditTitle}
+        addQuestion={showAddQuestion}*/
+        numQuestions={questions.length}
+        submit={() => setCreate(true)}
+        setTitle={setTitle}
+      />
+      <div className="row">{loading ? <Spinner /> : questions_}</div>
+      <div className="row d-flex justify-content-center align-items-center">
+        <Button
+          text={"Add New Question"}
+          type={"primary"}
+          onClick={showAddQuestion}
         />
-      )}
+      </div>
     </>
   );
 };

@@ -1,18 +1,18 @@
 import Button from "../../Button";
 
 export const QuestionnaireCreateHeader = ({ ...props }) => {
-  const { title/*, editTitle, addQuestion*/, numQuestions, submit } = props;
+  const { title/*, editTitle, addQuestion*/, numQuestions, submit, setTitle } = props;
   return (
     <>
       <div className="row">
         <div className="col-10 offset-1 mb-1">
           <div className="card mb-4">
-            <div className={`card-body py-3 d-flex justify-content-between align-items-center ${numQuestions===0 ? 'create-questionnaire-empty-header': ''}`}>
+            <div className={`card-header py-3 d-flex justify-content-between align-items-center ${numQuestions===0 ? 'create-questionnaire-empty-header': ''}`}>
               <div className="pl-2 ">
                 <Button text={"Back"} type={"danger"} url={"/"} />
               </div>
               <h6 className="m-0 font-weight-bold text-center h2 text-primary">
-                {title} {/*<Button
+                {title ? title : "No Title"} {/*<Button
                   text={"Edit Title"}
                   type={"warning"}
                   onClick={editTitle}
@@ -22,11 +22,29 @@ export const QuestionnaireCreateHeader = ({ ...props }) => {
                 <Button
                   text={"Submit"}
                   type={"success"}
-                  disabled={numQuestions===0}
+                  disabled={numQuestions===0 || !title}
                   onClick={submit}
                 />
               </div>
             </div>
+            <div className="card-body d-flex justify-content-between align-items-center">
+            <div className="form-group row w-100 d-flex align-items-center mb-0">
+              <label
+                htmlFor="title"
+                className="col-2 offset-2 d-flex justify-content-center align-items-center mb-0 text-lg text-primary"
+              >
+                Title
+              </label>
+              <input
+                type="text"
+                className="form-control form-control-lg col-4"
+                id="title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                placeholder="Insert here Questionnaire Title"
+              />
+            </div>
+          </div>
             {/*numQuestions>0 && <div className="card-body d-flex justify-content-start">
                 <Button
                   text={"Add New Question"}

@@ -217,6 +217,7 @@ app.post('/api/answers', [
       if(!Number.isInteger(answer.id)) return false;
       if(answer.answer){
         if(!answer.answer instanceof String) return false;
+        if(answer.answer.length > 200) return false;
       }
       if(answer.selection){
         if(!Number.isInteger(answer.selection)) return false;

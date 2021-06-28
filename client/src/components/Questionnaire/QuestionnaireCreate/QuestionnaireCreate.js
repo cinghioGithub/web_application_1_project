@@ -38,7 +38,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
         admin: user.id,
         questions: [...questions],
       };
-      console.log(questionnaire);
+      
       try{
         const response = await API.insertQuestionnaire(questionnaire);
         setLoading(false);

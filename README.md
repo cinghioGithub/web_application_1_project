@@ -3,12 +3,12 @@
 
 ## React Client Application Routes
 
-- Route `/`: show the listof questionnaires available to compile
-- Route `/login`: show the login form for authentication
-- Route `/manage`: show user's questionnaires and permits to delete them or see results of them
-- Route `/create`: permits to create a questionnaire
-- Route `/compile/:id`: show question list of a questionnaire and permits to submit a compile. `<id>` is the questionnaire's id 
-- Route `/results/:id`: show a results for a specific questionnaire. `<id>` is the questionnaire's id
+- Route `/`: show the list of questionnaires available to compile.
+- Route `/login`: show the login form for authentication.
+- Route `/manage`: show user's questionnaires and permits to delete them or see results of them.
+- Route `/create`: permits to create a questionnaire.
+- Route `/compile/:id`: show question list of a questionnaire and permits to submit a compile. `<id>` is the questionnaire's id.
+- Route `/results/:id`: show a results for a specific questionnaire. `<id>` is the questionnaire's id.
 
 ## API Server
 
@@ -179,10 +179,10 @@
   ```
 ## Database Tables
 
-- Table `users` - contains: id username hash name
-- Table `questionnaires` - contains: id title id_user num_submit
-- Table `questions` - contains: id id_questionnaire open question answer_1 answer_2 answer_3 answer_4 answer_5 answer_6 answer_7 answer_8 answer_9 answer_10 min max
-- Table `answers` - contains: id_compile id_questionnaire id_question answer option name open selection
+- Table `users` - contains: id username hash name. Save informations about administrators.
+- Table `questionnaires` - contains: id title id_user num_submit. Save informations about questionnaires (without questions).
+- Table `questions` - contains: id id_questionnaire open question answer_1 answer_2 answer_3 answer_4 answer_5 answer_6 answer_7 answer_8 answer_9 answer_10 min max. Save all questions of all questionnaires.
+- Table `answers` - contains: id_compile id_questionnaire id_question answer option name open selection. Save answers to questions of questionnaires.
 
 ## Main React Components
 
@@ -194,6 +194,8 @@
 - `Questionnaires` (in `Questionnaires.js`): show all the available questionnaire to compile.
 - `QuestionnaireManage` (in `QuestionnaireManage.js`): show all admin's questionnaires. It manage the delete of a questionnaire.
 - `Login` (in `Login.js`): show a form for the authentication of an admin.
+- `Navbar` (in `Navbar.js`): Contains a button in order to perform login
+- `Sidebar` (in `Sidebar.js`): Shown only for administrators. Permits to manage personal questionnaires and also compile questionnaires.
 
 
 ## Screenshot

@@ -37,7 +37,7 @@ export const QuestionnaireBox = ({ ...props }) => {
                       isAdmin ? "success" : "primary"
                     } text-uppercase mb-1 text-center`}
                   >
-                    Compiled
+                    Number of Compiles
                   </div>
                   <div className="h5 mb-0 font-weight-bold text-gray-800 text-center">
                     {questionnaire.compiled}

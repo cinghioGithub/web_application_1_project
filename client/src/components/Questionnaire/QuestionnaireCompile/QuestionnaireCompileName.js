@@ -2,7 +2,7 @@ import Button from "../../Button";
 import { useState } from 'react'
 
 export const QuestionnaireCompileName = ({ ...props }) => {
-  const { setUsername, submit} = props;
+  const { setUsername, /*submit*/ setNamePresent} = props;
   const [user, setUser] = useState("");
 
   const handleOnChange = (event) => {
@@ -32,10 +32,10 @@ export const QuestionnaireCompileName = ({ ...props }) => {
               />
               <div className="col-2 d-flex justify-content-center align-items-center">
                 <Button
-                  text={"Submit"}
+                  text=/*{"Submit"}*/{"Next"}
                   type={"success"}
                   disabled={!user}
-                  onClick={submit}
+                  onClick=/*{submit}*/{() => setNamePresent(true)}
                 />
               </div>
             </div>

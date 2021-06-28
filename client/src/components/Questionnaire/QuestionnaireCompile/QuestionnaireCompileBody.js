@@ -14,10 +14,11 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
   const [answer, setAnswer] = useState("");
 
   /* states of controll */
-  const [finished, setFinished] = useState(false);
+  //const [finished, setFinished] = useState(false);
   const [error, setError] = useState();
   const [endCompile, setEndCompile] = useState(false);
   const [invalidAnswer, setInvalidAnswer] = useState(false);
+  const [namePresent, setNamePresent] = useState(false);
 
   const handleSetOption = (id) => {
     setOptions((options) => {
@@ -37,6 +38,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
       setError();
       setInvalidAnswer(false);
       setEndCompile(true);
+      //submit();
     }
   };
 
@@ -171,7 +173,6 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
   useEffect(() => {
     if (endCompile) {
       const errorsID = manageCheckAnswers();
-      console.log(errorsID);
       if (errorsID.length !== 0) {
         setError(
           `Some questions are Required: ${errorsID.map(
@@ -180,8 +181,10 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
         );
         setEndCompile(false);
       } else {
+        submit();
         setError();
-        setFinished(true);
+        //setFinished(true);
+        setNamePresent(false);
       }
     }
     /* suppress warning about missing dependency: manageCheckAnswers (function is immutable) */
@@ -204,7 +207,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
           </div>
         </div>
       </div>
-      {!finished ? (
+      {/*finished*/namePresent ? (
         <>
           {error && (
             <div className="row d-flex justify-content-center align-items-center">
@@ -240,7 +243,8 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
         <QuestionnaireCompileName
           username={username}
           setUsername={setUsername}
-          submit={submit}
+          /*submit={submit}*/
+          setNamePresent={setNamePresent}
         />
       )}
     </>

@@ -30,7 +30,7 @@ export const QuestionnairePagination = ({ ...props }) => {
             <Pagination className="m-0">{pagination}</Pagination>
             <div className="pr-4">
               <Button
-                text={"Next"}
+                text={current === pages ? "Submit" : "Next"}
                 type={`${current === pages ? "success" : "primary"}`}
                 onClick={current === pages ? finish : next}
               />

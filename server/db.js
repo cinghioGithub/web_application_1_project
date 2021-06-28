@@ -5,7 +5,7 @@ const db = new sqlite.Database("exam.db", (err) => {
   if (err) throw err;
 });
 
-/* retrive questionnaire's questions */
+/* support function to retrive questionnaire's questions */
 const getQuestionnaireQuestions = (id_questionnaire) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * from questions WHERE id_questionnaire=?";
@@ -71,7 +71,7 @@ exports.getQuestionnaires = () => {
     const sql = "SELECT * from questionnaires";
     db.all(sql, [], async (err, rows) => {
       if (err) {
-        reject(err); //TODO
+        reject(err);
       } else {
         if (rows.length === 0) {
           resolve({ error: "Database Error - Get Questionnaires (no questionaires)" });
@@ -80,8 +80,6 @@ exports.getQuestionnaires = () => {
             return {
               id: row.id,
               title: row.title,
-              /*compiled: row.num_submit,*/
-              /*admin: row.id_user,*/
               questions: [],
             };
           });
@@ -89,7 +87,6 @@ exports.getQuestionnaires = () => {
             try {
               const questions = await getQuestionnaireQuestions(questionnaire.id);
               questionnaire.questions = questions.error ? [] : [...questions];
-              //questionnaire.questions = [...questions];
             } catch (err) {
               reject(err);
             }
@@ -107,7 +104,7 @@ exports.getQuestionnaireById = (id) => {
     const sql = "SELECT * from questionnaires WHERE id=?";
     db.all(sql, [id], async (err, rows) => {
       if (err) {
-        reject(err); //TODO
+        reject(err);
       } else {
         if (rows.length === 0) {
           resolve({ error: "Database Error - Get questionnaire by id (no questionnaire for specified id)" });
@@ -116,8 +113,6 @@ exports.getQuestionnaireById = (id) => {
             return {
               id: row.id,
               title: row.title,
-              /*compiled: row.num_submit,
-              admin: row.id_user,*/
               questions: [],
             };
           });
@@ -142,7 +137,7 @@ exports.getQuestionnairesByUser = (user) => {
     const sql = "SELECT * from questionnaires WHERE id_user=?";
     db.all(sql, [user], async (err, rows) => {
       if (err) {
-        reject(err); //TODO
+        reject(err);
       } else {
         if (rows.length === 0) {
           resolve({ error: "Database Error - Get questionnaires (no questionnaire for specified user)" });
@@ -160,7 +155,6 @@ exports.getQuestionnairesByUser = (user) => {
             try {
               const questions = await getQuestionnaireQuestions(questionnaire.id);
               questionnaire.questions = questions.error ? [] : [...questions];
-              //questionnaire.questions = [...questions];
             } catch (err) {
               reject(err);
             }
@@ -186,7 +180,7 @@ exports.getQuestionnaireAnswers = (id_questionnaire) => {
           const idCompileList = rows.map((row) => {
             return row.id_compile;
           });
-          const setIdCompile = [...new Set(idCompileList)]; //distinct name of compilations
+          const setIdCompile = [...new Set(idCompileList)]; //distinct id_compile of compilations
           let questionnaireList = {
             id: id_questionnaire,
             compiles: [],
@@ -296,6 +290,7 @@ exports.createQuestionnaire = (questionnaire) => {
   });
 };
 
+/* support function to set the correct id_compile */
 const getMaxId = () => {
   return new Promise((resolve, reject) => {
     const sql = "select max(id_compile) as maxId from answers";
@@ -309,6 +304,7 @@ const getMaxId = () => {
   });
 };
 
+/* support function which update the number of compiles of a questionnaire */
 const updateCompileNumber = (id_questionnaire) => {
   return new Promise((resolve, reject) => {
     const sql = "UPDATE questionnaires SET num_submit=num_submit+1 WHERE id=?";

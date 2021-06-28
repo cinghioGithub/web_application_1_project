@@ -1,14 +1,5 @@
 export const QuestionnaireCompileQuestion = ({ ...props }) => {
-  const {
-    question,
-    answer,
-    setAnswer,
-    selection,
-    setSelection,
-    options,
-    handleSetOption,
-    valid
-  } = props;
+  const { question, answer, setAnswer, selection, setSelection, options, handleSetOption, valid } = props;
 
   return (
     <div className="col-10 offset-1 mb-4">

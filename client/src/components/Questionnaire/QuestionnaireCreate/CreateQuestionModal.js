@@ -8,7 +8,6 @@ export function CreateQuestionModal({ ...props }) {
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
 
-  /* Form inputs Handler */
   const [title, setTitle] = useState("");
   const [open, setOpen] = useState(true);
   const [required, setRequired] = useState(false);
@@ -18,6 +17,7 @@ export function CreateQuestionModal({ ...props }) {
   const [optionMax, setOptionMax] = useState(1);
   const [invalidMax, setInvalidMax] = useState(false);
 
+  /* manage delete of an option for a close question */
   const removeOption = (id) => {
     let tmpOptions = [...options]
       .filter((option) => option.id !== id)
@@ -30,6 +30,7 @@ export function CreateQuestionModal({ ...props }) {
       });
     setOptions(tmpOptions);
   };
+
   const handleOpen = () => {
     setOpen((open) => (open = !open));
   };
@@ -39,9 +40,10 @@ export function CreateQuestionModal({ ...props }) {
 
   const hide = () => {
     onHide();
+    /* avoid a glitch on hide of the modal */
     setTimeout(() => {
       resetQuestion();
-    }, 1000);
+    }, 500);
   };
 
   const addOption = () => {
@@ -70,7 +72,8 @@ export function CreateQuestionModal({ ...props }) {
     }
   };
 
-  const displayOptions = [...options].map((option, index) => (
+  /* array of options */
+  const listOptions = [...options].map((option, index) => (
     <Form.Row key={index} className="d-flex justify-content-between px-2">
       <Form.Group className="d-flex align-items-center">
         <Form.Check
@@ -125,6 +128,7 @@ export function CreateQuestionModal({ ...props }) {
     }
   };
 
+  /* clear question after reset */
   const resetQuestion = () => {
     setTitle("");
     setOpen(true);
@@ -148,7 +152,7 @@ export function CreateQuestionModal({ ...props }) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="add-quesion" className="text-primary bold">
-          Add Question
+          New Question
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -159,7 +163,7 @@ export function CreateQuestionModal({ ...props }) {
         >
           <Form.Group>
             <Form.Label>
-              Title <span className="text-danger">*Mandatory</span>
+              Question Title <span className="text-danger">*Mandatory</span>
             </Form.Label>
             <Form.Control
               required
@@ -237,7 +241,7 @@ export function CreateQuestionModal({ ...props }) {
                     value={optionMax}
                     onChange={(event) => setOptionMax(event.target.value)}/>
                   <Form.Control.Feedback tooltip type="invalid">
-                    Max is greater than options available
+                    Max is greater than options created
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group
@@ -277,7 +281,7 @@ export function CreateQuestionModal({ ...props }) {
               {options.length !== 0 && (
                 <>
                   <hr className="mt-0" />
-                  {displayOptions}
+                  {listOptions}
                 </>
               )}
             </>

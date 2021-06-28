@@ -11,6 +11,7 @@ export function Login({ ...props }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /* perform login */
   const submit = async (event) => {
     event.preventDefault();
     const credentials = { username: email, password: password };
@@ -20,6 +21,7 @@ export function Login({ ...props }) {
       login(user);
     } catch (err) {
       setError(err.message);
+      setLoading(false);
     }
   };
 

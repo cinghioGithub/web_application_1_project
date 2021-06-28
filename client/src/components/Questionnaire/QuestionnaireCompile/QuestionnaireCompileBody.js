@@ -1,34 +1,19 @@
 import { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
-import QuestionnaireCompileHeader from "./QuestionnaireCompileHeader";
+import Button from "../../Button";
 import QuestionnairePagination from "./QuestionnaireCompilePagination";
 import QuestionnaireCompileQuestion from "./QuestionnaireCompileQuestion";
 import QuestionnaireCompileName from "./QuestionnaireCompileName";
 import Spinner from "../../Spinner";
 
 export const QuestionnaireCompileBody = ({ ...props }) => {
-  const {
-    username,
-    setUsername,
-    loading,
-    setLoading,
-    setCursor,
-    title,
-    pages,
-    current,
-    questions,
-    question,
-    handleSetAnswer,
-    answers,
-    setForward
-  } = props;
+  const { username, setUsername, loading, setLoading, setCursor, title, pages, current, questions, question, handleSetAnswer, answers, setForward } = props;
 
-  /* Questionnaire States */
   const [options, setOptions] = useState([]);
   const [selection, setSelection] = useState();
   const [answer, setAnswer] = useState("");
 
-  /* Controls handler */
+  /* states of controll */
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState();
   const [endCompile, setEndCompile] = useState(false);
@@ -118,7 +103,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     return errorsID.filter((value) => value !== undefined);
   };
 
-  /* Submit answer */
+  /* complete answer */
   const handleCompleteAnswer = () => {
     if (question.open) {
       if (question.required && !answer) {
@@ -161,7 +146,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     }
   };
 
-  /* Old Answer Loader */
+  /* load an answer already given */
   useEffect(() => {
     if (!loading) {
       if (answers[question.id - 1] && answers[question.id - 1].answer) {
@@ -182,7 +167,7 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
     }
   }, [loading, answers, question.id]);   //answers, question.id added to supress warning
 
-  /* End Compile Handler */
+  /* manage end of compile */
   useEffect(() => {
     if (endCompile) {
       const errorsID = manageCheckAnswers();
@@ -199,13 +184,26 @@ export const QuestionnaireCompileBody = ({ ...props }) => {
         setFinished(true);
       }
     }
+    /* suppress warning about missing dependency: manageCheckAnswers (function is immutable) */
+    // eslint-disable-next-line
   }, [endCompile]);
 
   return (
     <>
-      <QuestionnaireCompileHeader
-        title={title}
-      />
+      <div className="row">
+        <div className="col-10 offset-1 mb-1">
+          <div className="card mb-4">
+            <div className="card-body py-3 d-flex align-item-center">
+              <div className="align-self-start col-2">
+                <Button text={"Back"} type={"danger"} url={"/"} />
+              </div>
+              <h6 className="align-self-center col-8 m-0 font-weight-bold text-center h2 text-primary">
+                {title}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
       {!finished ? (
         <>
           {error && (

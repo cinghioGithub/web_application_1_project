@@ -186,7 +186,7 @@
 
 ## Main React Components
 
-- `Main` (in `Main.js`): manage all routes of the application. Logged user will be able to perform different action. Not logged user will only be able to compile questionnaires. It performs download of questionnaires.
+- `App` (in `App.js`): manage all routes of the application. Logged user will be able to perform different actions. Not logged user will only be able to compile questionnaires. It performs download of questionnaires.
 - `QuestionnaireCompile` (in `QuestionnaireCompile.js`): permits to a user to compile a questionnaire and save it. It retrive from server the questionnaire to compile.
 - `QuestionnaireCreate` (in `QuestionnaireCreate.js`): permits to an admin to create a new questionnaire and save it.
 - `QuestionnaireBox` (in `QuestionnaireBox.js`): for questionnaires to comile show a button in order to compile the questionnaire. For admin's questionnaire show buttons to manage it and the number of compiles.

@@ -4,16 +4,7 @@ import Button from "../../Button";
 import Spinner from "../../Spinner";
 
 export const QuestionnaireCreateBody = ({ ...props }) => {
-  const {
-    loading,
-    setLoading,
-    questions,
-    setQuestions,
-    title,
-    setTitle,
-    setCreate,
-    showAddQuestion,
-  } = props;
+  const { loading, setLoading, questions, setQuestions, title, setTitle, setCreate, showAddQuestion } = props;
 
   const moveUp = (id) => {
     setLoading(true);
@@ -29,13 +20,11 @@ export const QuestionnaireCreateBody = ({ ...props }) => {
     setLoading(false);
   };
 
+  /* manage the moveUp/moveDown of questions */
   const swap = (id_1, id_2, array) => {
     const item_1 = array[id_1 - 1];
-    console.log(array);
     array[id_1 - 1] = array[id_2 - 1];
-    console.log(array);
     array[id_2 - 1] = item_1;
-    console.log(array);
     array = array.map((item, index) =>
       Object.assign({}, item, { id: index + 1 })
     );

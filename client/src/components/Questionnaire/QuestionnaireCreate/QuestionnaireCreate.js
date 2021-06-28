@@ -30,6 +30,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
     });
   };
 
+  /* perform the post of a new questionnaire on server */
   useEffect(() => {
     const submitQuestionnaire = async () => {
       const questionnaire = {
@@ -40,7 +41,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
       };
       
       try{
-        const response = await API.insertQuestionnaire(questionnaire);
+        await API.insertQuestionnaire(questionnaire);
         setLoading(false);
       }
       catch(err){
@@ -54,6 +55,7 @@ export const QuestionnaireCreate = ({ ...props }) => {
     }
   }, [create, questions, title, user.id]); //questions, title, user.id added to suppress warning
 
+  /* manage the refresh of questionnaires list after the creation on a new one */
   useEffect(() => {
     if(created){
       setRefreshUser(true);

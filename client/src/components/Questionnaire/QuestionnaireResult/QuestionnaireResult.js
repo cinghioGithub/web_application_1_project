@@ -14,6 +14,7 @@ export const QuestionnaireResult = ({ ...props }) => {
 
   const id = useRouteMatch().params.id;
 
+  /* retrive compiles for a specific questionnaire and the questionnaire (for questions) */
   useEffect(() => {
     async function getQuestionnaireCompiles() {
       try {
@@ -25,11 +26,9 @@ export const QuestionnaireResult = ({ ...props }) => {
       }
       try {
         const questionnaires_response = await API.getAdminQuestionnaires();
-        console.log(questionnaires_response);
         const tmp = questionnaires_response.find(
           (questionnaire) => questionnaire.id === parseInt(id)
         );
-        console.log(tmp);
         setQuestionnaire(tmp);
       } catch (err) {
         setError(err.error);

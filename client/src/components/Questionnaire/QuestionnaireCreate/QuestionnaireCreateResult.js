@@ -37,7 +37,7 @@ const QuestionnaireCreateResult = ({ ...props }) => {
             <div className="d-flex justify-content-center align-items-center">
               <Link to="/manage">
                 <button className={`btn btn-success mx-1`} disabled={loading} onClick={() => setRefreshUser(true)}>
-                  <span className="text">Go Manage</span>
+                  <span className="text">Go To My Questionnaires</span>
                 </button>
               </Link>
             </div>

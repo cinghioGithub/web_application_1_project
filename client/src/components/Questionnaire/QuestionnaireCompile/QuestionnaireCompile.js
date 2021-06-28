@@ -59,8 +59,6 @@ export const QuestionnaireCompile = ({ ...props }) => {
         const tmpQuestionnaire = questionnaires.find((questionnaire) => questionnaire.id === parseInt(id));
         setQuestionnaire(tmpQuestionnaire);
         setLoadQuestionnaire(false);
-      } else {
-        //TODO SURVEY NOT FOUND
       }
     }
   }, [id, questionnaire, questionnaires]); //questionnaire, questionnaires added to suppress warning
@@ -87,7 +85,6 @@ export const QuestionnaireCompile = ({ ...props }) => {
           Object.assign({}, { id: index + 1, ...answer })
         ),
       };
-      console.log(compile);
       postCompile(compile);
     }
   }, [forward, answers, id, username]);  //answers, id, username added to suppress warning

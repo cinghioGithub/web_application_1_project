@@ -27,7 +27,6 @@ export const QuestionnaireResultBody = ({ ...props }) => {
     setCursor(value);
   };
 
-
   const questions = questionnaire.questions.map((question) => (
     <QuestionnaireResultQuestion
       key={question.id}

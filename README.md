@@ -1,5 +1,4 @@
-# Exam #1: "Questionario"
-## Student: s283938 BRAVI ENRICO 
+# Web Application 1 exam
 
 ## React Client Application Routes
 

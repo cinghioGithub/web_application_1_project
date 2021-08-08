@@ -29,7 +29,6 @@ passport.use(
       return done(null, user);
     })
     .catch( err => {
-      console.log("AUTHENTICATION ERROR: ", err);
       return done(err, false, err.Error);
     });
   })
@@ -37,20 +36,16 @@ passport.use(
 
 // SERIALIZER FOR A NEW SESSION
 passport.serializeUser((user, done) => {
-  console.log("SERIALIZEUSER - USER: ", user);
   done(null, user.id);
 });
 
 // DESERIALIZER FROM AN EXISTING SESSION
 passport.deserializeUser((id, done) => {
-  console.log("DESERIALIZEUSER - USERID: ", id);
   users.getUserById(id)
     .then((user) => {
-      console.log("DESERIALIZEUSER [DONE] - USER: ", user);
       done(null, user); // this will be available in req.user
     })
     .catch((err) => {
-      console.log("DESERIALIZEUSER [ERROR] - USER: ", err);
       done(err, null);
     });
 });
@@ -89,7 +84,6 @@ app.get('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
     if (result.error) {
       return res.status(404).json(result);
     } else{
-      //setTimeout(() => res.status(200).json(result), 2000);
       return res.status(200).json(result);
     }      
   }
@@ -100,14 +94,13 @@ app.get('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
 
  /* Retrive questionnaires of all users */
 app.get('/api/questionnaires', async (req, res) => {
-  /* retrive all questionnaire to compile */
+  /* retrive a single questionnaire by id */
   if(req.query.id){
     try {
       const result = await db.getQuestionnaireById(req.query.id);
       if (result.error) {
         return res.status(404).json(result);
       } else {
-        //setTimeout(() => res.status(200).json(result), 2000);
         return res.status(200).json(result);
       }
     }
@@ -116,12 +109,12 @@ app.get('/api/questionnaires', async (req, res) => {
     }
   }
   else{
+    /* retrive all questionnaires to compile */
     try {
       const result = await db.getQuestionnaires();
       if (result.error) {
         return res.status(404).json(result);
       } else {
-        //setTimeout(() => res.status(200).json(result), 2000);
         return res.status(200).json(result);
       }
     }
@@ -144,7 +137,6 @@ app.get('/api/admin/answers', isLoggedIn, async (req, res) => {
           if (result.error) {
             return res.status(404).json(result);
           } else {
-            //setTimeout(() => res.status(200).json(result), 2000);
             return res.status(200).json(result);
           }
         }
@@ -169,7 +161,8 @@ app.get('/api/admin/answers', isLoggedIn, async (req, res) => {
 app.post('/api/admin/questionnaires', [
   body("admin").isInt(),
   body("questions").custom((questions) => {
-    console.log(questions);
+    if(!Array.isArray(questions)) return false;
+    if(questions.length === 0) return false;
     for(const question of questions){
       if(!Number.isInteger(question.id)) return false;
       if(!typeof question.open === 'boolean') return false;
@@ -199,7 +192,6 @@ app.post('/api/admin/questionnaires', [
   }
   try{
     const result = await db.createQuestionnaire(req.body);
-    //setTimeout(() => res.status(200).json(result), 2000);
     return res.status(200).json(result);
   }
   catch(err){
@@ -212,6 +204,8 @@ app.post('/api/admin/questionnaires', [
 app.post('/api/answers', [
   body("username").isString(),
   body("answers").custom((answers) => {
+    if(!Array.isArray(answers)) return false;
+    if(answers.length === 0) return false;
     for(const answer of answers){
       if(!typeof answer.open === 'boolean') return false;
       if(!Number.isInteger(answer.id)) return false;
@@ -239,7 +233,6 @@ app.post('/api/answers', [
   try{
     if(req.query.id){
       const result = await db.createCompile(req.query.id, req.body);
-      //setTimeout(() => res.status(200).json(result), 2000);
       return res.status(200).json(result);
     }
     else{
@@ -259,7 +252,6 @@ app.delete('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
       const user = await db.getUserIdQuestionnaire(req.query.id);
       if(user.id_user === req.user.id){
         const result = await db.deleteQuestionnaire(req.query.id);
-        //setTimeout(() => res.status(200).json(result), 2000);
         return res.status(200).json(result);
       }
       else{
@@ -287,22 +279,17 @@ app.delete('/api/admin/questionnaires', isLoggedIn, async (req, res) => {
 // POST /session
 // Login
 app.post('/api/sessions', function (req, res, next) {
-  console.log("AUTHENTICATE SESSION SERVER API [START]");
   passport.authenticate("local", (err, user, info) => {
     if (err){
-      console.log("AUTHENTICATE SESSION SERVER API [ERROR]", err);
       return next(err.Error);
     } 
     if (!user) {
-      console.log("AUTHENTICATE SESSION SERVER API [FAILED]", info);
       // display wrong login messages
       return res.status(401).json(info);
     }
-    console.log("AUTHENTICATE SESSION SERVER API [SUCCESS]", user);
     // success, perform the login
     req.login(user, (err) => {
       if (err) return next(err);
-      console.log("AUTHENTICATE SESSION SERVER API [LOGIN]");
       // req.user contains the authenticated user, we send all the user info back
       // this is coming from db.getUser()
       return  res.json(req.user); //setTimeout(() => res.json(req.user), 2000);
@@ -314,7 +301,6 @@ app.post('/api/sessions', function (req, res, next) {
 // DELETE /sessions/current 
 // logout
 app.delete("/api/sessions/current", (req, res) => {
-  console.log("LOGOUT SERVER API");
   req.logout();
   res.end();
 });
@@ -322,14 +308,11 @@ app.delete("/api/sessions/current", (req, res) => {
 // GET /sessions/current
 // check whether the user is logged in or not
 app.get("/api/sessions/current", (req, res) => {
-  console.log("CHECKSESSION SERVER API [START]");
   if (req.isAuthenticated()) {
-    console.log("CHECKSESSION SERVER API [OK]: ", req.user);
     //setTimeout(() => res.status(200).json(req.user), 2000);
     return res.status(200).json(req.user);
   } else {
     const error = {error: "Unauthenticated user!"}
-    console.log('CHECKSESSION SERVER API [ERROR]: ', error.error);
     return res.status(401).json(error);
   }
 });

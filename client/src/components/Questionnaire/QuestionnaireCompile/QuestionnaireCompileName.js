@@ -28,7 +28,7 @@ export const QuestionnaireCompileName = ({ ...props }) => {
                 id="username"
                 value={user}
                 onChange={(event) => handleOnChange(event)}
-                placeholder="Insert here your Name"
+                placeholder="Insert your Name"
               />
               <div className="col-2 d-flex justify-content-center align-items-center">
                 <Button

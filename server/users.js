@@ -11,15 +11,11 @@ exports.getUser = (username, password) => {
     const sql = "SELECT * FROM users WHERE username=?";
     db.get(sql, [username], (err, row) => {
       if (err) {
-        console.log("DATABASE [ERROR]: ", err);
         reject(err);
       } else {
         if (row) {
           const user = { id: row.id, username: row.username, name: row.name };
-          console.log("DATABASE USER DATA: ", user);
-          console.log("DATABASE USER HASH PASSWORD: ", row.hash);
           bcrypt.compare(password, row.hash).then((result) => {
-            console.log("BCRYPT RESULT: ", result);
             if (result) resolve(user);
             else resolve(false);
           });

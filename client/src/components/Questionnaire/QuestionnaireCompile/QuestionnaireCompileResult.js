@@ -18,7 +18,7 @@ const QuestionnaireCompileResult = ({ ...props }) => {
             ) : error ? (
               <>
                 <h1 className="font-weight-bold text-center h1 text-warning">
-                  Ouch! we have some problems :(
+                  Problems during compilation of questionnaire!
                 </h1>
                 <div className="m-3 d-flex justify-content-center text-lg align-items-center">
                   <p>{error}</p>
@@ -27,7 +27,7 @@ const QuestionnaireCompileResult = ({ ...props }) => {
             ) : (
               <>
                 <h1 className="font-weight-bold text-center h1 text-success">
-                  Well Done!
+                  Thank you!
                 </h1>
                 <div className="m-3 d-flex justify-content-center text-lg align-items-center">
                   <p>Your Answer was succesfull submitted!</p>

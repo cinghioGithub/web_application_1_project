@@ -19,7 +19,7 @@ export const Questionnaires = ({ ...props }) => {
           <Spinner/>
         ) : error ? (
           <Alert variant={"danger"}>{error}</Alert>
-        ) : (
+        ) : cards.length === 0 ? "No Questionnaires available" : (
           cards
         )}
       </div>

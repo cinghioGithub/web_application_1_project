@@ -203,5 +203,5 @@
 ![Screenshot](./img/screenshot.png)
 
 ## Users Credentials
-- admin1@test.it, password
-- admin2@test.it, password
+- admin1@test.it, password (owner of "Musica" questionnaire)
+- admin2@test.it, password (owner of "Vacanze" questionnaire)

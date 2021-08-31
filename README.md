@@ -10,11 +10,12 @@
 ### Steps to install correctly the environment
 
 - Clone the project using `git clone <repo url>`
-- Move in the directory and perform the following operations:
-  - `cd server`
+- Move in the directory and perform the following operations to start the server:
+  - `cd web_application_1_project/server`
   - `npm install`
-  - `node server.js` or `nodemon server.js
-  - `cd client`
+  - `node server.js` or `nodemon server.js`
+- On another console perform those operations to start the client:
+  - `cd web_application_1_project/client`
   - `npm install`
   - `npm start`
 

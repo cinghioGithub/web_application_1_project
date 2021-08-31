@@ -1,5 +1,23 @@
 # Web Application 1 exam
 
+### Requirements, Language and Frameworks
+
+* Javascript EM6
+* Node.js LTS 14.16
+* React.js
+* react-bootstrap
+
+### Steps to install correctly the environment
+
+- Clone the project using `git clone <repo url>`
+- Move in the directory and perform the following operations:
+  - `cd server`
+  - `npm install`
+  - `node server.js` or `nodemon server.js
+  - `cd client`
+  - `npm install`
+  - `npm start`
+
 ## React Client Application Routes
 
 - Route `/`: show the list of questionnaires available to compile.

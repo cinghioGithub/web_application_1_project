@@ -1,4 +1,4 @@
-# Web Application 1 exam
+# React Survey Manager
 
 ### Requirements, Language and Frameworks
 

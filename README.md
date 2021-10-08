@@ -1,5 +1,7 @@
 # React Survey Manager
 
+Project realized in collaboration with [Alessandro Cannarella](https://github.com/cannarelladev/)
+
 ### Requirements, Language and Frameworks
 
 * Javascript EM6
